@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Emergency;
 use App\Models\Record;
 use App\Models\Beneficiary;
+use App\Models\EmergencyType;
 use App\Models\Month;
 
 class EmergencyController extends Controller
@@ -15,6 +16,7 @@ class EmergencyController extends Controller
     {        
         $emergencies = Emergency::all();
         $months = Month::all();
+        $emergencyTypes = EmergencyType::all();
 
         // $beneficiaries = Beneficiary::whereHas('record', function($q){
         //     return $q->where('month_id', '8');
@@ -23,7 +25,7 @@ class EmergencyController extends Controller
 
 
 
-        return view('emergencies.index', compact('emergencies', 'months'));
+        return view('emergencies.index', compact('emergencies', 'months', 'emergencyTypes'));
     }
 
 
@@ -33,6 +35,8 @@ class EmergencyController extends Controller
         $recordId = $request->input('record_id');
         $emergencyDate = $request->input('emergency_date');
         $comment = $request->input('comment');
+        $emergencyTypeId = $request->input('emergency_type_id');
+        
         // $serviceId = $request->input('service_id');
 
         // foreach($serviceIds as $serviceId){
@@ -54,6 +58,7 @@ class EmergencyController extends Controller
             'record_id' => $recordId,
             'emergency_date' => $emergencyDate,
             'comment' => $comment,
+            'emergency_type_id' => $emergencyTypeId,
         ]);
 
         foreach($beneficiariesIds as $beneficiaryId)

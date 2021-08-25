@@ -111,6 +111,9 @@
                                             <span class="badge badge-pill badge-danger h-auto font-weight-bold font-italic">Emergency</span>
                                         @endif
                                     </div>
+                                    <div class="col">
+                                        <div>click to expand</div>
+                                    </div>
                                 </div>
 
                                 
@@ -136,7 +139,7 @@
                                 <br><hr>
 
                                 <!-- Benefits and its modal-->
-                                @include('pss_cases.partials.benefits')
+                                @include('pss_cases.partials.services')
                                 <!-- end benefits -->
 
 

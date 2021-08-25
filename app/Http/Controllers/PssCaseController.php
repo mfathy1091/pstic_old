@@ -25,6 +25,7 @@ use App\Models\Reason;
 use App\Models\Month;
 use App\Models\Budget;
 use App\Models\Team;
+use App\Models\EmergencyType;
 
 class PssCaseController extends Controller
 {
@@ -267,6 +268,7 @@ class PssCaseController extends Controller
         // dd($direct);
         
         $pssServices = Service::where('type', 'Psychosocial')->get();
+        $emergencyTypes = EmergencyType::all();
 
         $pssCase = PssCase::find($id);
         $referral = $pssCase->referral;
@@ -287,7 +289,7 @@ class PssCaseController extends Controller
             //dd($benefit->service->name);
         //}
 
-        return view('pss_cases.show', compact('pssCase', 'referral', 'records', 'pssServices'));
+        return view('pss_cases.show', compact('pssCase', 'referral', 'records', 'pssServices', 'emergencyTypes'));
 
     }
 

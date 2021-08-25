@@ -23,6 +23,7 @@
                     style="text-align: center">
                     <thead>
                         <tr>
+                            <th class="align-left">Type</th> 
                             <th class="align-left">Date</th>                                                      
                             <th class="align-left">Comment</th>
                             <th class="align-left">Beneficaries</th> 
@@ -32,7 +33,7 @@
                     <tbody>
                         @foreach($record->emergencies as $emergency)
                             <tr>
-                                
+                                <td>{{ $emergency->emergencyType->name }}</td>
                                 <td>{{ $emergency->emergency_date }}</td>
                                 <td>{{ $emergency->comment }}</td>
                                 <td>
@@ -114,10 +115,10 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="service_id">Service</label>
-                                <select class="custom-select my-1 mr-sm-2" name="service_id">
-                                    @foreach($pssServices as $pssService)
-                                        <option value="{{$pssService->id}}">{{$pssService->name}}</option>
+                                <label for="service_id">Emergency Type</label>
+                                <select class="custom-select my-1 mr-sm-2" name="emergency_type_id">
+                                    @foreach($emergencyTypes as $emergencyType)
+                                        <option value="{{$emergencyType->id}}">{{$emergencyType->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('service_id')
@@ -126,6 +127,17 @@
                             </div>
                         </div>
                         
+{{--                         <label class="mr-sm-2">Emegency Types</label>
+                        <div class="form-group border p-2">
+                            @foreach($emergenciesTypes as $emergencyType)
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="emergency_types_ids[]"
+                                        value="{{ $emergencyType->id }}" id="{{ $emergencyType->name }}">
+                                    <label class="form-check-label" for="{{ $emergencyType->name }}">{{ $emergencyType->name }}</label>
+                                </div>
+                            @endforeach
+                        </div> --}}
+
                         <label for="beneficiaries_ids" class="mr-sm-2">Beneficiaries</label>
                         <div class="form-group border p-2">
                             @foreach($record->beneficiaries as $beneficiary)

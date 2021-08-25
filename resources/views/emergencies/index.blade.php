@@ -37,12 +37,24 @@
 
                 <div class="form-group">
                     <select class="form-select" name="month_id">
-                        <option selected>Select Month</option>
+                        <option selected>Filter By Month</option>
                         @foreach($months as $month)
                             <option value="{{$month->id}}">{{$month->name}}</option>
                         @endforeach
                     </select>
                     @error('month_id')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <select class="form-select" name="emergency_type_id">
+                        <option selected>Filter By Type</option>
+                        @foreach($emergencyTypes as $emergencyType)
+                            <option value="{{$emergencyType->id}}">{{$emergencyType->name}}</option>
+                        @endforeach
+                    </select>
+                    @error('emergency_type_id')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
@@ -55,6 +67,7 @@
                         style="text-align: center">
                         <thead>
                             <tr>
+                                <th class="align-left">Type</th>  
                                 <th class="align-left">Date</th>                                                      
                                 <th class="align-left">Comment</th>
                                 <th class="align-left">Beneficaries</th> 
@@ -63,7 +76,7 @@
                         <tbody>
                             @foreach($emergencies as $emergency)
                                 <tr>
-                                    
+                                    <td>{{ $emergency->emergencyType->name }}</td>
                                     <td>{{ $emergency->emergency_date }}</td>
                                     <td>{{ $emergency->comment }}</td>
                                     <td>

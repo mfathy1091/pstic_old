@@ -36,6 +36,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(FileSeeder::class);
        $this->call(ReferralSourceSeeder::class);
+       $this->call(VulnerabilitySeeder::class);
+       $this->call(EmergencyTypeSeeder::class);
+       
         //$this->call(PssCaseSeeder::class);
         //$this->call(ReferralSeeder::class);
 
