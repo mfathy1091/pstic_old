@@ -44,7 +44,7 @@
                                     @endforeach
                                 </td>
                                 <td>        
-                                    <a href="{{route('emergencies.edit', $emergency->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+                                    {{-- <a href="{{route('emergencies.edit', $emergency->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a> --}}
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_emergency{{ $emergency->id }}" title="Delete"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>

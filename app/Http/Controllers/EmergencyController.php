@@ -77,4 +77,22 @@ class EmergencyController extends Controller
         return redirect()->back();
     }
 
+    public function destroy($id)
+    {
+        $emergency = Emergency::findOrFail($id);
+        $record = $emergency->record;
+        
+        $emergency->delete();
+
+        // make the record inactive if it has no activities
+        if(($record->emergencies)->isEmpty())
+        {
+            $record->status_id = 2;
+            $record->save();
+        }
+
+        return redirect()->back();
+    }
+    
+
 }

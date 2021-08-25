@@ -28,9 +28,21 @@ class FollowUpController extends Controller
     }
     
     
+
     public function destroy($id)
     {
-        FollowUp::findOrFail($id)->delete();
+        $emergency = FollowUp::findOrFail($id);
+        $record = $emergency->record;
+        
+        $emergency->delete();
+
+        // make the record inactive if it has no activities
+        if(($record->emergencies)->isEmpty())
+        {
+            $record->status_id = 2;
+            $record->save();
+        }
+
         return redirect()->back();
     }
 }
