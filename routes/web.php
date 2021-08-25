@@ -18,7 +18,7 @@ Route::middleware(['auth', 'is_active_user'])->group(function () {
     // Home
     Route::get('/', 'Individual\SearchController@index')->name('home');
     
-    
+    Route::get('/add_referral', 'ReferralController@someMethod')->name('add-referral');
 
     // users and roles
     Route::middleware(['auth'])->group(function () {
@@ -27,6 +27,8 @@ Route::middleware(['auth', 'is_active_user'])->group(function () {
     });
     
     // Individuals
+    Route::get('vuelivesearch', 'Api\IndividualController@getIndividuals')->name('vuelivesearch');
+
     Route::get('individuals/search', 'Individual\SearchController@index')->name('individuals.search');
     Route::get('individuals/search/action', 'Individual\SearchController@action')->name('individuals.search.action');
     

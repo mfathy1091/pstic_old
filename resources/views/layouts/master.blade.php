@@ -23,12 +23,10 @@
 			<!-- container -->
 			<div class="container-fluid">
 				@yield('page-header')
-				@yield('content')
+				
 
 
-				<div id="app">
-					<test></test>
-				</div>
+					@yield('content')
 
 				<script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
 

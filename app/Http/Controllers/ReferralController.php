@@ -19,6 +19,12 @@ class ReferralController extends Controller
         return view('referrals.index',compact('referrals'));
     }
 
+    public function someMethod()
+    {
+
+        return view('add_referral');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

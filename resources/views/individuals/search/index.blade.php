@@ -15,12 +15,13 @@
 			</div>
 		</div>
 		<!-- /breadcrumb -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 @endsection
 
 @section('content')
+        
 
-
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		
 
 
         <!-- Individual Search-->
@@ -80,49 +81,50 @@
 
         </div>
         
+        
 
 
-
-				<script>
-					$(document).ready(function()
-                    {
-                        $("#results_outer_container").hide();
-
-						function fetch_data(file_number = '', individual_id = '', passport_number = '')
-						{
-							$.ajax({
-								url: "{{ route('individuals.search.action') }}",
-								method: 'GET',
-								data: {
-                                    file_number:file_number,
-                                    individual_id:individual_id,
-                                    passport_number:passport_number,
-                                },
-								dataType: 'json',
-								success:function(data){
-                                    $('#results_outer_container').show();
-									$('#rows_container').html(data.record_rows);
-									$('#total_records').html(data.total_records);
-								}
-							});
-						}
-
-
-						
-						$(document).on('click', '#search_btn', function(e) {
-                            e.preventDefault();
-							var file_number = $('#file_number').val();
-                            var individual_id = $('#individual_id').val();
-                            var passport_number = $('#passport_number').val();
-							fetch_data(file_number, individual_id, passport_number);
-						});
-
-					});
-					
-					</script>
+				
 
 
 
 @endsection
 @section('js')
+<script>
+    $(document).ready(function()
+    {
+        $("#results_outer_container").hide();
+
+        function fetch_data(file_number = '', individual_id = '', passport_number = '')
+        {
+            $.ajax({
+                url: "{{ route('individuals.search.action') }}",
+                method: 'GET',
+                data: {
+                    file_number:file_number,
+                    individual_id:individual_id,
+                    passport_number:passport_number,
+                },
+                dataType: 'json',
+                success:function(data){
+                    $('#results_outer_container').show();
+                    $('#rows_container').html(data.record_rows);
+                    $('#total_records').html(data.total_records);
+                }
+            });
+        }
+
+
+        
+        $(document).on('click', '#search_btn', function(e) {
+            e.preventDefault();
+            var file_number = $('#file_number').val();
+            var individual_id = $('#individual_id').val();
+            var passport_number = $('#passport_number').val();
+            fetch_data(file_number, individual_id, passport_number);
+        });
+
+    });
+    
+    </script>
 @endsection

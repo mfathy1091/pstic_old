@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Individual;
+use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\File;
 use App\Models\Gender;
 use App\Models\Nationality;
@@ -12,6 +12,11 @@ use App\Models\Relationship;
 
 class IndividualController extends Controller
 {
+
+
+
+
+
 
     public function index()
     {
@@ -82,5 +87,7 @@ class IndividualController extends Controller
         Individual::findOrFail($id)->delete();
         return redirect()->back();
     }
+
+
 }
 
