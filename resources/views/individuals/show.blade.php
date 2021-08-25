@@ -108,7 +108,7 @@
         <div class="card-header" id="heading3">
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                    PSS History
+                    Referrals History
                 </button>
             </h2>
         </div>
@@ -120,7 +120,7 @@
                 {{-- add button --}}
                 @can('pss-case-create')
                     <a href="{{route('psscases.create', ['id' => $individual->id])}}" class="btn btn-primary btn-sm mb-3" role="button" aria-pressed="true">
-                        Add PSS Case
+                        Add New Referral
                     </a>
                 @endcan
                 

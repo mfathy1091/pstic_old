@@ -24,6 +24,15 @@
 			<div class="container-fluid">
 				@yield('page-header')
 				@yield('content')
+
+
+				<div id="app">
+					<test></test>
+				</div>
+
+				<script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
+
+
 				@include('layouts.sidebar')
 				@include('layouts.models')
             	@include('layouts.footer')
