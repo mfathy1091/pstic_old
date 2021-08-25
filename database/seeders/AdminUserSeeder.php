@@ -33,7 +33,7 @@ class AdminUserSeeder extends Seeder
         
         $admin->assignRole('Administrator');
         $admin->assignRole('PS Supervisor'); 
-        $admin->assignRole('PS Worker');       
+        // $admin->assignRole('PS Worker');       
     }
 }
 

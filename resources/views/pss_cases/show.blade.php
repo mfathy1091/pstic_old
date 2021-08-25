@@ -102,6 +102,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <span class="text-primary font-weight-bold text-capitalize mr-3">{{ $record->month->name }}</span>
+                                        
                                         @if ($record->status->name == 'Inactive')
                                             <span class="badge badge-pill badge-secondary h-auto font-weight-bold font-italic">{{ $record->status->name }}</span>
                                         @elseif ($record->status->name == 'Active')

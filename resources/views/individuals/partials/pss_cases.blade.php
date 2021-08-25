@@ -27,7 +27,13 @@
                 <tr>
                     <?php $i++; ?>
                     <td>{{ $i }}</td>
-                    <td>{{ $pssCase->currentRecord->status->name }}</td>
+                    <td>
+                        @if ($pssCase->currentRecord->status->name == 'Inactive')
+                            <span class="badge badge-pill badge-secondary h-auto font-weight-bold font-italic">{{ $pssCase->currentRecord->status->name }}</span>
+                        @elseif ($pssCase->currentRecord->status->name == 'Active')
+                            <span class="badge badge-pill badge-success h-auto font-weight-bold font-italic">{{ $pssCase->currentRecord->status->name }}</span>
+                        @endif
+                    </td>
                     <td>{{ $pssCase->referral->referral_date }}</td>
                     <td>{{ $pssCase->referral->referralSource->name }}</td>
                     
