@@ -5,9 +5,9 @@
             <h6>PSS Beneficiaries</h6>
         </div>
         <div class="pull-right">
-            <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#addBeneficiaryModal{{ $record->id }}">
+            {{-- <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#addBeneficiaryModal{{ $record->id }}">
                 Add
-            </button>                                                 
+            </button>                                                  --}}
         </div>
     </div>
 </div>
@@ -25,7 +25,7 @@
                             <th class="align-middle">Age</th>
                             <th class="align-middle">Gender</th>
                             <th class="align-middle">Nationality</th>
-                            <th class="align-middle">Actions</th>
+                            {{-- <th class="align-middle">Actions</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -40,9 +40,9 @@
                                 <td>{{ $beneficiary->individual->age }}</td>
                                 <td>{{ $beneficiary->individual->gender->name }}</td>
                                 <td>{{ $beneficiary->individual->nationality->name }}</td>
-                                <td>        
+                                {{-- <td>        
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_beneficiary{{ $beneficiary->id }}" title="Delete"><i class="fa fa-trash"></i></button>
-                                </td>
+                                </td> --}}
                             </tr>
 
                             {{-- Delete Modal --}}

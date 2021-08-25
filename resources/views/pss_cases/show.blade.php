@@ -102,9 +102,14 @@
                                 <div class="row">
                                     <div class="col">
                                         <span class="text-primary font-weight-bold text-capitalize mr-3">{{ $record->month->name }}</span>
-                                        <span class="badge badge-pill badge-warning h-auto font-weight-bold font-italic">{{ $record->status->name }}</span>
+                                        @if ($record->status->name == 'Inactive')
+                                            <span class="badge badge-pill badge-secondary h-auto font-weight-bold font-italic">{{ $record->status->name }}</span>
+                                        @elseif ($record->status->name == 'Active')
+                                            <span class="badge badge-pill badge-success h-auto font-weight-bold font-italic">{{ $record->status->name }}</span>
+                                        @endif
+                                        
                                         @if ($record->is_new == '1')
-                                            <span class="badge badge-pill badge-success h-auto font-weight-bold font-italic ml-2">New</span>
+                                            <span class="badge badge-pill badge-info h-auto font-weight-bold font-italic ml-2">New</span>
                                         @endif
                                         @if ($record->is_emergency == '1')
                                             <span class="text-muted ml-2 mr-2">|</span>
