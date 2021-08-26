@@ -47,7 +47,8 @@
             </div>
 
             <div class="card-body">
-                <trip-from></trip-from>
+                {{-- <trip-form></trip-form> --}}
+                <multi_step-form></multi_step-form>
             </div>
         </div>
 
