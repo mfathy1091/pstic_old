@@ -30,9 +30,13 @@ Route::middleware(['auth', 'is_active_user'])->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('roles', RoleController::class);
     });
-    
+
     // Individuals
     Route::get('vuelivesearch', 'Api\IndividualController@getIndividuals')->name('vuelivesearch');
+    Route::post('api/individuals/add-individual', 'Api\IndividualController@addIndividual');
+    Route::get('api/individuals/genders', 'Api\IndividualController@getGenders');
+    Route::get('api/individuals/nationalities', 'Api\IndividualController@getNationalities');
+    Route::get('api/individuals/relationships', 'Api\IndividualController@getRelationships');
 
     Route::get('individuals/search', 'Individual\SearchController@index')->name('individuals.search');
     Route::get('individuals/search/action', 'Individual\SearchController@action')->name('individuals.search.action');

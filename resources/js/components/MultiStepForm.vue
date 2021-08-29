@@ -1,5 +1,14 @@
 <template>
   <div class="container">
+
+		<div v-if="success" class="alert alert-success" role="alert">
+			{{ success }}
+		</div>
+
+	  <div v-if="derrors" class="alert alert-danger" role="alret">
+		  {{ derrors }}
+	  </div>
+
     <article>
       <header>
         <div class="progress">
@@ -16,59 +25,68 @@
           <h2>Add File Owner</h2>
               <div class="form-group">
 					<label for="file_number" class="mr-sm-2">File Number</label>
-					<input id="file_number" type="text" name="file_number" class="form-control">
+					<input v-model="data.file_number" type="text" name="file_number" class="form-control">
               </div>
 
 			<div class="form-group">
 				<label for="individual_id" class="mr-sm-2">Individual ID</label>
-				<input id="individual_id" type="text" name="individual_id" class="form-control">
+				<input v-model="data.individual_id" type="text" name="individual_id" class="form-control">
 			</div>
 
 			<div class="form-group">
-				<label for="passport_number" class="mr-sm-2">Passport Number</label>
-				<input id="passport_number" type="text" name="passport_number" class="form-control">
+          <label for="passport_number" class="mr-sm-2">Passport Number</label>
+          <input v-model="data.passport_number" type="text" name="passport_number" class="form-control">
 			</div>
 
 			<div class="form-group">
 				<label for="name" class="mr-sm-2">Name</label>
-				<input id="name" type="text" name="name" class="form-control">
+				<input v-model="data.name" type="text" name="name" class="form-control">
 			</div>
 
 			<div class="form-group">
 				<label for="native_name" class="mr-sm-2">Native Name</label>
-				<input id="native_name" type="text" name="native_name" class="form-control">
+				<input v-model="data.native_name" type="text" name="native_name" class="form-control">
 			</div>
 
 			<div class="form-group">
 				<label for="age" class="mr-sm-2">Age</label>
-				<input id="age" type="number" name="age" class="form-control">
+				<input v-model="data.age" type="number" name="age" class="form-control">
 			</div>
-		
+	
+
 			<div class="form-group">
-				<label for="inputState">Gender</label>
-				<select class="custom-select my-1 mr-sm-2" name="gender_id">
-					<option selected disabled>Choose...</option>
+				<label>Select Gender:</label>
+				<select class='form-control' v-model='data.gender_id'>
+					<option value='0' disabled>Choose...</option>
+					<option v-for='gender in genders' :value='gender.id' :key="gender.id">{{ gender.name }}</option>
+				</select>
+			</div>
+
+
+			<div class="form-group">
+				<label>Select Nationality:</label>
+				<select class='form-control' v-model='data.nationality_id'>
+					<option value='0' disabled>Choose...</option>
+					<option v-for='nationality in nationalities' :value='nationality.id' :key="nationality.id">{{ nationality.name }}</option>
 				</select>
 			</div>
 
 			<div class="form-group">
-				<label for="inputCity">Nationality</label>
-				<select class="custom-select my-1 mr-sm-2" name="nationality_id">
-					<option selected disabled>Choose...</option>
+				<label>Relationship to PA:</label>
+				<select class='form-control' v-model='data.pa_relationship_id'>
+					<option value='0' disabled>Choose...</option>
+					<option v-for='relationship in relationships' :value='relationship.id' :key="relationship.id">{{ relationship.name }}</option>
 				</select>
 			</div>
 
-			<div class="form-group">
-				<label for="inputCity">Relationship to PA</label>
-				<select class="custom-select my-1 mr-sm-2" name="relationship_id">
-					<option selected disabled>Choose...</option>
-				</select>
-			</div>
 
 			<div class="form-group">
 				<label for="current_phone_number" class="mr-sm-2">Current Phone Number</label>
 				<input id="current_phone_number" type="text" name="current_phone_number" class="form-control">
 			</div>
+
+			<button type="primary" @click="addIndividual" class="btn btn-primary">Add</button>
+
 
         </div>
 
@@ -91,77 +109,153 @@
         </div>
       </section>
     </article>
+
   </div>
 </template>
 
 <script>
-  export default {
-    data: () => {
-      return {
-        activeStep: 0,
-        animation: 'animate-in',
-        formSteps: [
-          {
-            title: "HTML Quiz",
-            fields: [
-              { label: "What does HTML stand for?", value: '', valid: true, pattern: /.+/ },
-              { label: "Who is making the Web standards?", value: '', valid: true, pattern: /.+/ },
-              { label: "Element for the largest heading?", value: '', valid: true, pattern: /.+/ }
-            ]
-          },
-          {
-            title: "CSS Quiz",
-            fields: [
-              { label: "What does CSS stand for?", value: '', valid: true, pattern: /.+/ },
-              { label: "HTML tag for an internal style sheet?", value: '', valid: true, pattern: /.+/ },
-              { label: "Property for the background color?", value: '', valid: true, pattern: /.+/ }
-            ]
-          },
-          {
-            title: "Your data",
-            fields: [
-              { label: "Your first name?", value: '', valid: true, pattern: /.+/ },
-              { label: "Your last name?", value: '', valid: true, pattern: /.+/ },
-              { label: "Your email?", value: '', valid: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }
-            ]
-          },
-          {
-            title: "Thank you for participating!",
-          }
-        ],
-      }
-    },
-    methods: {
-      nextStep() {
-        this.animation = 'animate-out';
-        setTimeout(() => {
-          this.animation = 'animate-in';
-          this.activeStep += 1;
-        }, 550);
-      },
-      checkFields() {
-        let valid = true;
-        this.formSteps[this.activeStep].fields.forEach(field => {
-          if(!field.pattern.test(field.value)) {
-            valid = false;
-            field.valid = false;
-          }
-          else {
-            field.valid = true;
-          }
-        });
-        if(valid) {
-          this.nextStep();
-        }
-        else {
-          this.animation = 'animate-wrong';
-          setTimeout(() => {
-            this.animation = '';
-          }, 400);
-        }
-      }
-    }
-  }
+  	export default {
+		data: () => {
+			return {
+				data : {
+						file_number: '',
+						passport_number: '',
+						name: '',
+						native_name: '',
+						age: '',
+						is_registered: '',
+						file_id: '1',
+						individual_id: '',
+						gender_id: '0',
+						nationality_id: '0',
+						pa_relationship_id: '0',
+						current_phone_number: '',
+					},
+					genders: [],
+					nationalities: [],
+					relationships: [],
+					derrors: '',
+					success: '',
+				activeStep: 0,
+				animation: 'animate-in',
+				formSteps: [
+					{
+						title: "HTML Quiz",
+						fields: [
+						{ label: "What does HTML stand for?", value: '', valid: true, pattern: /.+/ },
+						{ label: "Who is making the Web standards?", value: '', valid: true, pattern: /.+/ },
+						{ label: "Element for the largest heading?", value: '', valid: true, pattern: /.+/ }
+						]
+					},
+					{
+						title: "CSS Quiz",
+						fields: [
+						{ label: "What does CSS stand for?", value: '', valid: true, pattern: /.+/ },
+						{ label: "HTML tag for an internal style sheet?", value: '', valid: true, pattern: /.+/ },
+						{ label: "Property for the background color?", value: '', valid: true, pattern: /.+/ }
+						]
+					},
+					{
+						title: "Your data",
+						fields: [
+						{ label: "Your first name?", value: '', valid: true, pattern: /.+/ },
+						{ label: "Your last name?", value: '', valid: true, pattern: /.+/ },
+						{ label: "Your email?", value: '', valid: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }
+						]
+					},
+					{
+						title: "Thank you for participating!",
+					}
+				],
+			}
+		},
+		methods: {
+			nextStep() {
+				this.animation = 'animate-out';
+				setTimeout(() => {
+				this.animation = 'animate-in';
+				this.activeStep += 1;
+				}, 550);
+			},
+			checkFields() {
+				let valid = true;
+				this.formSteps[this.activeStep].fields.forEach(field => {
+				if(!field.pattern.test(field.value)) {
+					valid = false;
+					field.valid = false;
+				}
+				else {
+					field.valid = true;
+				}
+				});
+				if(valid) {
+				this.nextStep();
+				}
+				else {
+				this.animation = 'animate-wrong';
+				setTimeout(() => {
+					this.animation = '';
+				}, 400);
+				}
+			},
+			async addIndividual(){
+
+				
+				try {
+					const response = await axios.post('api/individuals/add-individual', this.data);
+					this.success = 'Added Scuccessfully'
+					// return await axios({
+					// 	method: 'post',
+					// 	url: 'api\individuals\add-individual',
+					// 	data: this.data,
+					// });
+				} catch(e){
+					this.derrors = 'Invalid'
+				}
+
+				// const res = await this.callApi('post', 'api\individuals\add-individual', this.data).
+  				// catch(e => {this.derrors = e.data.errors})
+				// if(res.status==201){
+				// 	// this.tags.unshift(res.data)
+				// 	// this.success('Tag has been added successfuly!')
+				// 	// this.addModal = false
+				// 	this.data.name = ""
+				// }else{
+				// 	this.generic()
+				// }
+			}
+		},
+		async created() {
+			// get genders
+			const res = await this.callApi('get', 'api/individuals/genders')
+			if(res.status==200)
+			{
+				this.genders = res.data
+			}else{
+				this.generic()
+			}
+
+			// get nationalities
+			const res2 = await this.callApi('get', 'api/individuals/nationalities')
+			if(res2.status==200)
+			{
+				this.nationalities = res2.data
+			}else{
+				this.generic()
+			}
+
+			
+			// get relationships
+			const res3 = await this.callApi('get', 'api/individuals/relationships')
+			if(res3.status==200)
+			{
+				this.relationships = res3.data
+			}else{
+				this.generic()
+			}
+		}
+
+	}
 </script>
 
 // <style lang="scss" scoped>

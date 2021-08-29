@@ -28,10 +28,8 @@
 				<div id="app">
 					@yield('content')
 				</div>
-
 				
-				<script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
-
+				
 
 				@include('layouts.sidebar')
 				@include('layouts.models')
@@ -39,5 +37,6 @@
 				@include('layouts.footer-scripts')
 			</div>
 		</div>
+		<script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
 	</body>
 </html>

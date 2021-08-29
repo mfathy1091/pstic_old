@@ -13,11 +13,6 @@ use App\Models\Relationship;
 class IndividualController extends Controller
 {
 
-
-
-
-
-
     public function index()
     {
         //

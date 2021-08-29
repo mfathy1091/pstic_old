@@ -31,9 +31,9 @@
             </div>
         @endif
 
-        <check-individual></check-individual>
+        {{-- <check-individual></check-individual> --}}
 
-        <autocomplete-component></autocomplete-component>
+        {{-- <autocomplete-component></autocomplete-component> --}}
         
         <div class="card">
             <div class="card-header">
