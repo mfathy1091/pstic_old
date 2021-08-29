@@ -2180,6 +2180,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2667,9 +2731,8 @@ __webpack_require__.r(__webpack_exports__);
 // Imports
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Noto+Sans&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".container[data-v-6a9fbda4] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  min-height: 100vh;\n  font-family: \"Noto Sans\", sans-serif;\n  background: radial-gradient(#DF5C2E, #A43227);\n}\narticle[data-v-6a9fbda4] {\n  display: flex;\n  margin: 10px;\n  width: calc(100% - 20px);\n  max-width: 720px;\n  min-height: 480px;\n  perspective: 1000px;\n}\narticle header[data-v-6a9fbda4] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 60px;\n  height: 480px;\n  background-color: #fff;\n  border-right: 2px dotted #DF5C2E;\n  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);\n}\narticle .progress-step[data-v-6a9fbda4] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: relative;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-bottom: 20px;\n  color: #fff;\n  background-color: #DF5C2E;\n  font-weight: bold;\n}\narticle .progress-step.active[data-v-6a9fbda4] {\n  background-color: #DF5C2E;\n}\narticle .progress-step.active ~ .progress-step[data-v-6a9fbda4] {\n  color: #555;\n  background-color: #ccc;\n}\narticle .progress-step.active ~ .progress-step[data-v-6a9fbda4]::before {\n  background-color: #ccc;\n}\narticle .progress-step[data-v-6a9fbda4]:before {\n  content: \"\";\n  position: absolute;\n  top: -20px;\n  width: 2px;\n  height: 20px;\n  background-color: #DF5C2E;\n  z-index: 10;\n}\narticle .progress-step[data-v-6a9fbda4]:first-child::before {\n  display: none;\n}\narticle section[data-v-6a9fbda4] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  width: 100%;\n  background-color: #fff;\n  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);\n}\narticle section h2[data-v-6a9fbda4] {\n  font-size: 1.6rem;\n  color: #DF5C2E;\n  margin: 0;\n  padding: 20px;\n}\narticle section .input-fields[data-v-6a9fbda4] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  width: 100%;\n}\narticle section .input-container[data-v-6a9fbda4] {\n  position: relative;\n  padding: 30px 20px 20px 20px;\n  width: calc(100% - 40px);\n  max-width: 400px;\n}\narticle section .input-container input[data-v-6a9fbda4] {\n  position: relative;\n  width: 100%;\n  font-family: \"Noto Sans\", sans-serif;\n  font-size: 1.35rem;\n  outline: none;\n  background: transparent;\n  box-shadow: none;\n  border: none;\n  border-bottom: 2px dashed #DF5C2E;\n}\narticle section .input-container input:valid + .input-label[data-v-6a9fbda4] {\n  top: 10px;\n  left: 20px;\n  font-size: 0.7rem;\n  font-weight: normal;\n  color: #999;\n}\narticle section .input-container input.wrong-input + .input-label[data-v-6a9fbda4] {\n  color: #B92938;\n}\narticle section .input-label[data-v-6a9fbda4] {\n  position: absolute;\n  top: 32px;\n  left: 20px;\n  font-size: 1.35rem;\n  pointer-events: none;\n  transition: 0.2s ease-in-out;\n}\narticle section .actions[data-v-6a9fbda4] {\n  margin: 0;\n}\narticle section .actions button[data-v-6a9fbda4] {\n  font-family: \"Noto Sans\", sans-serif;\n  outline: none;\n  border: none;\n  color: #fff;\n  background-color: #DF5C2E;\n  font-size: 1.35rem;\n  padding: 5px 20px;\n  margin: 0;\n  text-transform: uppercase;\n  border-radius: 3px;\n  cursor: pointer;\n}\n.animate-in[data-v-6a9fbda4] {\n  transform-origin: left;\n  -webkit-animation: in-data-v-6a9fbda4 0.6s ease-in-out;\n          animation: in-data-v-6a9fbda4 0.6s ease-in-out;\n}\n.animate-out[data-v-6a9fbda4] {\n  transform-origin: bottom left;\n  -webkit-animation: out-data-v-6a9fbda4 0.6s ease-in-out;\n          animation: out-data-v-6a9fbda4 0.6s ease-in-out;\n}\n.animate-wrong[data-v-6a9fbda4] {\n  -webkit-animation: wrong-data-v-6a9fbda4 0.4s ease-in-out;\n          animation: wrong-data-v-6a9fbda4 0.4s ease-in-out;\n}\n@-webkit-keyframes in-data-v-6a9fbda4 {\n0% {\n    opacity: 0;\n    transform: rotateY(90deg);\n}\n100% {\n    opacity: 1;\n    transform: rotateY(0deg);\n}\n}\n@keyframes in-data-v-6a9fbda4 {\n0% {\n    opacity: 0;\n    transform: rotateY(90deg);\n}\n100% {\n    opacity: 1;\n    transform: rotateY(0deg);\n}\n}\n@-webkit-keyframes out-data-v-6a9fbda4 {\n0% {\n    transform: translateY(0px) rotate(0deg);\n}\n60% {\n    transform: rotate(10deg);\n}\n100% {\n    transform: translateY(1000px);\n}\n}\n@keyframes out-data-v-6a9fbda4 {\n0% {\n    transform: translateY(0px) rotate(0deg);\n}\n60% {\n    transform: rotate(10deg);\n}\n100% {\n    transform: translateY(1000px);\n}\n}\n@-webkit-keyframes wrong-data-v-6a9fbda4 {\n0% {\n    transform: translateX(0);\n}\n20% {\n    transform: translateX(40px);\n}\n40% {\n    transform: translateX(20px);\n}\n60% {\n    transform: translateX(40px);\n}\n80% {\n    transform: translateX(20px);\n}\n100% {\n    transform: translateX(0);\n}\n}\n@keyframes wrong-data-v-6a9fbda4 {\n0% {\n    transform: translateX(0);\n}\n20% {\n    transform: translateX(40px);\n}\n40% {\n    transform: translateX(20px);\n}\n60% {\n    transform: translateX(40px);\n}\n80% {\n    transform: translateX(20px);\n}\n100% {\n    transform: translateX(0);\n}\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33046,7 +33109,7 @@ var render = function() {
                 staticClass: "progress-step",
                 class: { active: index === _vm.activeStep }
               },
-              [_vm._v("\n          " + _vm._s(index + 1) + "\n        ")]
+              [_vm._v("\n            " + _vm._s(index + 1) + "\n          ")]
             )
           }),
           0
@@ -33054,6 +33117,36 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("section", { class: _vm.animation }, [
+        _vm.activeStep === 0
+          ? _c("div", [
+              _c("h2", [_vm._v("Add File Owner")]),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _vm._m(7),
+              _vm._v(" "),
+              _vm._m(8),
+              _vm._v(" "),
+              _vm._m(9)
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.activeStep === 1
+          ? _c("div", [_c("h2", [_vm._v("Add Related Individuals")])])
+          : _vm._e(),
+        _vm._v(" "),
         _c("h2", [_vm._v(_vm._s(_vm.formSteps[_vm.activeStep].title))]),
         _vm._v(" "),
         _c(
@@ -33108,7 +33201,186 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "mr-sm-2", attrs: { for: "file_number" } }, [
+        _vm._v("File Number")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { id: "file_number", type: "text", name: "file_number" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "mr-sm-2", attrs: { for: "individual_id" } }, [
+        _vm._v("Individual ID")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { id: "individual_id", type: "text", name: "individual_id" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c(
+        "label",
+        { staticClass: "mr-sm-2", attrs: { for: "passport_number" } },
+        [_vm._v("Passport Number")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { id: "passport_number", type: "text", name: "passport_number" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "mr-sm-2", attrs: { for: "name" } }, [
+        _vm._v("Name")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { id: "name", type: "text", name: "name" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "mr-sm-2", attrs: { for: "native_name" } }, [
+        _vm._v("Native Name")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { id: "native_name", type: "text", name: "native_name" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { staticClass: "mr-sm-2", attrs: { for: "age" } }, [
+        _vm._v("Age")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { id: "age", type: "number", name: "age" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "inputState" } }, [_vm._v("Gender")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          staticClass: "custom-select my-1 mr-sm-2",
+          attrs: { name: "gender_id" }
+        },
+        [
+          _c("option", { attrs: { selected: "", disabled: "" } }, [
+            _vm._v("Choose...")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "inputCity" } }, [_vm._v("Nationality")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          staticClass: "custom-select my-1 mr-sm-2",
+          attrs: { name: "nationality_id" }
+        },
+        [
+          _c("option", { attrs: { selected: "", disabled: "" } }, [
+            _vm._v("Choose...")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "inputCity" } }, [
+        _vm._v("Relationship to PA")
+      ]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          staticClass: "custom-select my-1 mr-sm-2",
+          attrs: { name: "relationship_id" }
+        },
+        [
+          _c("option", { attrs: { selected: "", disabled: "" } }, [
+            _vm._v("Choose...")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c(
+        "label",
+        { staticClass: "mr-sm-2", attrs: { for: "current_phone_number" } },
+        [_vm._v("Current Phone Number")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          id: "current_phone_number",
+          type: "text",
+          name: "current_phone_number"
+        }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 

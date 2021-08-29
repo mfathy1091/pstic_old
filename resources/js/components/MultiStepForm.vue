@@ -12,6 +12,70 @@
         </div>
       </header>
       <section :class="animation">
+        <div v-if="activeStep === 0">
+          <h2>Add File Owner</h2>
+              <div class="form-group">
+					<label for="file_number" class="mr-sm-2">File Number</label>
+					<input id="file_number" type="text" name="file_number" class="form-control">
+              </div>
+
+			<div class="form-group">
+				<label for="individual_id" class="mr-sm-2">Individual ID</label>
+				<input id="individual_id" type="text" name="individual_id" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="passport_number" class="mr-sm-2">Passport Number</label>
+				<input id="passport_number" type="text" name="passport_number" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="name" class="mr-sm-2">Name</label>
+				<input id="name" type="text" name="name" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="native_name" class="mr-sm-2">Native Name</label>
+				<input id="native_name" type="text" name="native_name" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="age" class="mr-sm-2">Age</label>
+				<input id="age" type="number" name="age" class="form-control">
+			</div>
+		
+			<div class="form-group">
+				<label for="inputState">Gender</label>
+				<select class="custom-select my-1 mr-sm-2" name="gender_id">
+					<option selected disabled>Choose...</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="inputCity">Nationality</label>
+				<select class="custom-select my-1 mr-sm-2" name="nationality_id">
+					<option selected disabled>Choose...</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="inputCity">Relationship to PA</label>
+				<select class="custom-select my-1 mr-sm-2" name="relationship_id">
+					<option selected disabled>Choose...</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="current_phone_number" class="mr-sm-2">Current Phone Number</label>
+				<input id="current_phone_number" type="text" name="current_phone_number" class="form-control">
+			</div>
+
+        </div>
+
+        <div v-if="activeStep === 1">
+          <h2>Add Related Individuals</h2>
+        </div>
+
         <h2>{{ formSteps[activeStep].title }}</h2>
         <div class="input-fields">
           <div class="input-container"
@@ -100,172 +164,172 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
-  @mixin flexbox() {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .container {
-    @include flexbox();
-    width: 100%;
-    min-height: 100vh;
-    font-family: 'Noto Sans', sans-serif;
-    background: radial-gradient(#DF5C2E, #A43227);
-  }
-  article {
-    display: flex;
-    margin: 10px;
-    width: calc(100% - 20px);
-    max-width: 720px;
-    min-height: 480px;
-    perspective: 1000px;
-    header {
-      @include flexbox();
-      width: 60px;
-      height: 480px;
-      background-color: #fff;
-      border-right: 2px dotted #DF5C2E;
-      box-shadow: 0 15px 30px rgba(0,0,0,.2),
-                  0 10px 10px rgba(0,0,0,.2);
-    }
-    .progress-step {
-      @include flexbox();
-      position: relative;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      margin-bottom: 20px;
-      color: #fff;
-      background-color: #DF5C2E;
-      font-weight: bold;
-      &.active {
-        background-color: #DF5C2E;
-        ~ .progress-step {
-          color: #555;
-          background-color: #ccc;
-        }
-        ~ .progress-step::before {
-          background-color: #ccc;
-        }
-      }
-      &:before {
-        content: '';
-        position: absolute;
-        top: -20px;
-        width: 2px;
-        height: 20px;
-        background-color: #DF5C2E;
-        z-index: 10;
-      }
-      &:first-child::before {
-        display: none;
-      }
-    }
-    section {
-      @include flexbox();
-      flex-direction: column;
-      width: 100%;
-      background-color: #fff;
-      box-shadow: 0 15px 30px rgba(0,0,0,.2),
-                  0 10px 10px rgba(0,0,0,.2);
-      h2 {
-        font-size: 1.6rem;
-        color: #DF5C2E;
-        margin: 0;
-        padding: 20px;
-      }
-      .input-fields {
-        @include flexbox();
-        flex-direction: column;
-        width: 100%;
-      }
-      .input-container {
-        position: relative;
-        padding: 30px 20px 20px 20px;
-        width: calc(100% - 40px);
-        max-width: 400px;
-        input {
-          position: relative;
-          width: 100%;
-          font-family: 'Noto Sans', sans-serif;
-          font-size: 1.35rem;
-          outline: none;
-          background: transparent;
-          box-shadow: none;
-          border: none;
-          border-bottom: 2px dashed #DF5C2E;
-          &:valid + .input-label {
-            top: 10px;
-            left: 20px;
-            font-size: .7rem;
-            font-weight: normal;
-            color: #999;
-          }
-          &.wrong-input + .input-label {
-            color: #B92938;
-          }
-        }
-      }
-      .input-label {
-        position: absolute;
-        top: 32px;
-        left: 20px;
-        font-size: 1.35rem;
-        pointer-events: none;
-        transition: .2s ease-in-out;
-      }
-      .actions {
-        margin: 0;
-        button {
-          font-family: 'Noto Sans', sans-serif;
-          outline: none;
-          border: none;
-          color: #fff;
-          background-color: #DF5C2E;
-          font-size: 1.35rem;
-          padding: 5px 20px;
-          margin: 0;
-          text-transform: uppercase;
-          border-radius: 3px;
-          cursor: pointer;
-        }
-      }
-    }
-  }
-  .animate-in {
-    transform-origin: left;
-    animation: in .6s ease-in-out;
-  }
-  .animate-out {
-    transform-origin: bottom left;
-    animation: out .6s ease-in-out;
-  }
-  .animate-wrong {
-    animation: wrong .4s ease-in-out;
-  }
-  @keyframes in {
-    0% {
-      opacity: 0;
-      transform: rotateY(90deg);
-    }
-    100% {
-      opacity: 1;
-      transform: rotateY(0deg);
-    }
-  }
-  @keyframes out {
-    0% { transform: translateY(0px) rotate(0deg); }
-    60% { transform: rotate(10deg); }
-    100% { transform: translateY(1000px); }
-  }
-  @keyframes wrong {
-    0% { transform: translateX(0); }
-    20% { transform: translateX(40px); }
-    40% { transform: translateX(20px); }
-    60% { transform: translateX(40px); }
-    80% { transform: translateX(20px); }
-    100% { transform: translateX(0); }
-  }
-</style>
+// <style lang="scss" scoped>
+//   @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+//   @mixin flexbox() {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+//   .container {
+//     @include flexbox();
+//     width: 100%;
+//     min-height: 100vh;
+//     font-family: 'Noto Sans', sans-serif;
+//     background: radial-gradient(#DF5C2E, #A43227);
+//   }
+//   article {
+//     display: flex;
+//     margin: 10px;
+//     width: calc(100% - 20px);
+//     max-width: 720px;
+//     min-height: 480px;
+//     perspective: 1000px;
+//     header {
+//       @include flexbox();
+//       width: 60px;
+//       height: 480px;
+//       background-color: #fff;
+//       border-right: 2px dotted #DF5C2E;
+//       box-shadow: 0 15px 30px rgba(0,0,0,.2),
+//                   0 10px 10px rgba(0,0,0,.2);
+//     }
+//     .progress-step {
+//       @include flexbox();
+//       position: relative;
+//       width: 30px;
+//       height: 30px;
+//       border-radius: 50%;
+//       margin-bottom: 20px;
+//       color: #fff;
+//       background-color: #DF5C2E;
+//       font-weight: bold;
+//       &.active {
+//         background-color: #DF5C2E;
+//         ~ .progress-step {
+//           color: #555;
+//           background-color: #ccc;
+//         }
+//         ~ .progress-step::before {
+//           background-color: #ccc;
+//         }
+//       }
+//       &:before {
+//         content: '';
+//         position: absolute;
+//         top: -20px;
+//         width: 2px;
+//         height: 20px;
+//         background-color: #DF5C2E;
+//         z-index: 10;
+//       }
+//       &:first-child::before {
+//         display: none;
+//       }
+//     }
+//     section {
+//       @include flexbox();
+//       flex-direction: column;
+//       width: 100%;
+//       background-color: #fff;
+//       box-shadow: 0 15px 30px rgba(0,0,0,.2),
+//                   0 10px 10px rgba(0,0,0,.2);
+//       h2 {
+//         font-size: 1.6rem;
+//         color: #DF5C2E;
+//         margin: 0;
+//         padding: 20px;
+//       }
+//       .input-fields {
+//         @include flexbox();
+//         flex-direction: column;
+//         width: 100%;
+//       }
+//       .input-container {
+//         position: relative;
+//         padding: 30px 20px 20px 20px;
+//         width: calc(100% - 40px);
+//         max-width: 400px;
+//         input {
+//           position: relative;
+//           width: 100%;
+//           font-family: 'Noto Sans', sans-serif;
+//           font-size: 1.35rem;
+//           outline: none;
+//           background: transparent;
+//           box-shadow: none;
+//           border: none;
+//           border-bottom: 2px dashed #DF5C2E;
+//           &:valid + .input-label {
+//             top: 10px;
+//             left: 20px;
+//             font-size: .7rem;
+//             font-weight: normal;
+//             color: #999;
+//           }
+//           &.wrong-input + .input-label {
+//             color: #B92938;
+//           }
+//         }
+//       }
+//       .input-label {
+//         position: absolute;
+//         top: 32px;
+//         left: 20px;
+//         font-size: 1.35rem;
+//         pointer-events: none;
+//         transition: .2s ease-in-out;
+//       }
+//       .actions {
+//         margin: 0;
+//         button {
+//           font-family: 'Noto Sans', sans-serif;
+//           outline: none;
+//           border: none;
+//           color: #fff;
+//           background-color: #DF5C2E;
+//           font-size: 1.35rem;
+//           padding: 5px 20px;
+//           margin: 0;
+//           text-transform: uppercase;
+//           border-radius: 3px;
+//           cursor: pointer;
+//         }
+//       }
+//     }
+//   }
+//   .animate-in {
+//     transform-origin: left;
+//     animation: in .6s ease-in-out;
+//   }
+//   .animate-out {
+//     transform-origin: bottom left;
+//     animation: out .6s ease-in-out;
+//   }
+//   .animate-wrong {
+//     animation: wrong .4s ease-in-out;
+//   }
+//   @keyframes in {
+//     0% {
+//       opacity: 0;
+//       transform: rotateY(90deg);
+//     }
+//     100% {
+//       opacity: 1;
+//       transform: rotateY(0deg);
+//     }
+//   }
+//   @keyframes out {
+//     0% { transform: translateY(0px) rotate(0deg); }
+//     60% { transform: rotate(10deg); }
+//     100% { transform: translateY(1000px); }
+//   }
+//   @keyframes wrong {
+//     0% { transform: translateX(0); }
+//     20% { transform: translateX(40px); }
+//     40% { transform: translateX(20px); }
+//     60% { transform: translateX(40px); }
+//     80% { transform: translateX(20px); }
+//     100% { transform: translateX(0); }
+//   }
+// </style>
