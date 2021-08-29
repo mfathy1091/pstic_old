@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 
 @section('css')
@@ -10,7 +9,7 @@
 		<div class="breadcrumb-header justify-content-between">
 			<div class="left-content">
 				<div>
-					<h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Add New Referral</h2>
+					<h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">PSS Case Details</h2>
 				</div>
 			</div>
 			<div class="main-dashboard-header-right">
@@ -21,66 +20,19 @@
 @endsection
 
 @section('content')
-    
-<follow-ups></follow-ups>
-
-    <div class="card-body">
-        <div class="card">
-            <div class="card-header">
-                <h5>Original Referral Details</h5>
-                <h5 class="text-primary">
-                    {{ $referral->referralSource->name }} <span class="text-muted ml-2 mr-2">|</span> {{ $referral->referral_date }}
-                    
-                </h5>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col mb-4">
-                        <h6 class="card-subtitle mb-2 text-muted">Referral Source</h6>
-                        <div class="ml-4">
-                            <li>{{ $referral->referralSource->name }}</li>
-                            <li>{{ $referral->referring_person_name }}</li>
-                            <li>{{ $referral->referring_person_email }}</li>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <h6 class="card-subtitle mb-2 text-muted">Reason of Referral</h6>
-                        <div class="ml-4">
-                            <?php $reasons = $referral->reasons; ?>
-                            @foreach ($reasons as $reason)
-                                <li>{{ $reason->name }}</li>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="card-header">
-                <h5 class="text-primary">
-                    <a href="{{route('individuals.show', $pssCase->directIndividual->id)}}">
-                        {{ $pssCase->directIndividual->name }}
-                    </a>                            
-                </h5>
-
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col mb-4">
-                        <h6 class="card-subtitle mb-2 text-muted">Assigned PSW: {{ $pssCase->assignedPsw->name }}</h6>
-                        <div class="ml-4">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
+<!-- row -->
 
 
-    <h4 class="text-dark ml-4">Monthly Records</h4>
+<autocomplete-component></autocomplete-component>
+<follow-ups>
+
+    sdfsdf
+</follow-ups>
+
+
+            
+            
+            <h4 class="text-dark ml-4">Monthly Records</h4>
             {{-- Accordion List --}}
             <div class="accordion card-body" id="accordionExample">
                 <?php $n = 0; ?>
@@ -124,9 +76,36 @@
                         {{-- Accordion Body --}}
                         <div id="collapse{{ $record->id }}" class="collapse {{-- {{ $n == '1' ? ' show' : '' }} --}}" aria-labelledby="heading{{ $record->id }}" data-parent="#accordionExample">
                             <div class="card-body">
+                                <br>
+                                <!-- Benefits and its modal-->
+                                @include('pss_cases.partials.beneficiaries')
+                                <!-- end benefits -->
 
+                                <br><hr>
+
+                                <!-- Follow Ups and its modal-->
+                                @include('pss_cases.partials.follow_ups')
+                                <!-- End Follow Ups -->
                                 
 
+                                <br><hr>
+
+                                <!-- Benefits and its modal-->
+                                @include('pss_cases.partials.services')
+                                <!-- end benefits -->
+
+
+                                <br><hr>
+
+                                <!-- Benefits and its modal-->
+                                @include('pss_cases.partials.emergencies')
+                                <!-- end benefits -->
+
+                                <br><hr>
+
+                                <!-- Benefits and its modal-->
+                                @include('pss_cases.partials.risks')
+                                <!-- end benefits -->
                 
                             </div>
                         </div>
@@ -137,35 +116,14 @@
 
 
 
-<!-- row -->
-        @if(session()->has('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>{{ session()->get('error') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
+</div>
+<!-- row closed -->
 
-        <autocomplete-component></autocomplete-component>
-        
-        <div class="card">
-            <div class="card-header">
-                Create Trip
-            </div>
 
-            <div class="card-body">
-                {{-- <trip-form></trip-form> --}}
-                <multi_step-form></multi_step-form>
-            </div>
-        </div>
-
-    <!-- row closed -->
 @endsection
 @section('js')
 
 @endsection
-
 
 
 

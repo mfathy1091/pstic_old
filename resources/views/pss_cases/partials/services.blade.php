@@ -1,4 +1,4 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 
 
 {{-- Benefits --}}
@@ -92,6 +92,7 @@
     
 </div>
 
+
 <!-- ADD Benefit MODAL -->
 <div class="modal fade" id="addServiceModal{{ $record->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -153,32 +154,3 @@
     <!-- End Add Benefit Modal -->
 
 
-<script>
-    $(document).on('click', '#delete_btn', function (e) {
-        e.preventDefault();
-            var benefit_id =  $(this).attr('benefit_id');
-            var record_id =  $(this).attr('record_id');
-            var benefits_table = document.querySelector('#benefits_table'+record_id);
-
-            $.ajax({
-            type: 'post',
-            url: "{{route('benefits.delete')}}",
-            data: {
-                '_token': "{{csrf_token()}}",
-                'id' :benefit_id
-            },
-            success: function (data) {
-                if(data.status == true){
-                    $('#success_msg').show();
-                }
-                // if(data.is_empty == true){
-                //     $('#benefits_table'+record_id).hide();
-                // }
-                $('.benefit_row'+benefit_id).remove();
-
-            }, error: function (reject) 
-                {
-                }
-        });
-    });
-</script>

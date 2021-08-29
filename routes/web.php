@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth', 'is_active_user'])->group(function () {
+
+    Route::group(['prefix' => 'vue'], function(){
+        Route::get('get-individuals', 'Api\IndividualController@getIndividuals')->name('vue.get-individuals');
+    });
+
     
     // Home
     Route::get('/', 'Individual\SearchController@index')->name('home');
