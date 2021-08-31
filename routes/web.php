@@ -24,6 +24,7 @@ Route::middleware(['auth', 'is_active_user'])->group(function () {
     Route::get('/', 'Individual\SearchController@index')->name('home');
     
     Route::get('/add_referral', 'ReferralController@someMethod')->name('add-referral');
+    Route::get('/add-file', 'Api\FileController@create')->name('add_file');
 
     // users and roles
     Route::middleware(['auth'])->group(function () {

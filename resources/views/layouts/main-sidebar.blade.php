@@ -59,6 +59,7 @@
 							</a>
 							<ul class="slide-menu">
 								<li><a class="slide-item" href="{{ route('psw.psscases.index') }}">My PSS Cases</a></li>
+								<li><a class="slide-item" href="{{ route('files.create') }}">Create File</a></li>
 							</ul>
 						</li>
 					@endcan
