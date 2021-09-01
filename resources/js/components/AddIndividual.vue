@@ -19,7 +19,49 @@
                 <div class="card-body">
                     <h5 class="card-title">{{files[0].number}}</h5>
                     <hr>
-                    
+                    <div class="d-flex">
+                        <h5>Individuals</h5>
+                        <button class="btn btn-primary btn-sm mb-1 ml-3" @click="showModal = true">Add Individual</button>
+                    </div>
+
+                    <table id="datatable1" class="table table-hover table-sm table-bordered p-0"
+                    data-page-length="50"
+                    style="text-align: center">
+                    <thead>
+                        <tr>   
+                            <th class="align-middle">Individual ID</th>
+                            <th class="align-middle">Passport #</th>                     
+                            <th class="align-middle">Name</th>
+                            <th class="align-middle">Native Name</th>
+                            <th class="align-middle">Relationship</th>
+                            <th class="align-middle">Age</th>
+                            <th class="align-middle">Gender</th>
+                            <th class="align-middle">Nationality</th>
+                            <th class="align-middle">Current Phone #</th>
+                            <th class="align-middle">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr v-for="individual in files[0].individuals" :key="individual.id">
+                                <td v-text="individual.individual_id">{{}}</td>
+                                <td v-text="individual.passport_number"></td>
+                                <td v-text="individual.name"></td>
+                                <td v-text="individual.native_name"></td>
+                                <td v-text="individual.name"></td>
+                                <td v-text="individual.age"></td>
+                                <!-- <td v-text="individual.name">{{ individual->gender->name }}</td>
+                                <td v-text="individual.name">{{ individual->nationality->name }}</td> -->
+                                <td v-text="individual.current_phone_number"></td>
+                                <td>
+                                    <!-- <a href="{{route('individuals.show', $individual->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true">Show</a>
+
+                                    <a href="{{route('individuals.edit', $individual->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_individual{{ $individual->id }}" title="Delete"><i class="fa fa-trash"></i></button> -->
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
+                
                     <ul>
                         <li v-for="individual in files[0].individuals" :key="individual.id" v-text="individual.name"></li>
                     </ul>
@@ -29,7 +71,7 @@
             <p v-if="files.length > 0" class="text-primary">This File already exists</p>
 
             <button class="btn btn-primary mt-3" @click="isFileExists">Add File</button>
-            <button class="btn btn-primary mt-3" @click="showModal = true">Show Add File Modal</button>
+            
 
             
         </div>

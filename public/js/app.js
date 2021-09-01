@@ -1929,6 +1929,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -33335,6 +33377,88 @@ var render = function() {
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
+                  _c("div", { staticClass: "d-flex" }, [
+                    _c("h5", [_vm._v("Individuals")]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-sm mb-1 ml-3",
+                        on: {
+                          click: function($event) {
+                            _vm.showModal = true
+                          }
+                        }
+                      },
+                      [_vm._v("Add Individual")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "table",
+                    {
+                      staticClass:
+                        "table table-hover table-sm table-bordered p-0",
+                      staticStyle: { "text-align": "center" },
+                      attrs: { id: "datatable1", "data-page-length": "50" }
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.files[0].individuals, function(individual) {
+                          return _c("tr", { key: individual.id }, [
+                            _c(
+                              "td",
+                              {
+                                domProps: {
+                                  textContent: _vm._s(individual.individual_id)
+                                }
+                              },
+                              [_vm._v("{{}}")]
+                            ),
+                            _vm._v(" "),
+                            _c("td", {
+                              domProps: {
+                                textContent: _vm._s(individual.passport_number)
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("td", {
+                              domProps: { textContent: _vm._s(individual.name) }
+                            }),
+                            _vm._v(" "),
+                            _c("td", {
+                              domProps: {
+                                textContent: _vm._s(individual.native_name)
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("td", {
+                              domProps: { textContent: _vm._s(individual.name) }
+                            }),
+                            _vm._v(" "),
+                            _c("td", {
+                              domProps: { textContent: _vm._s(individual.age) }
+                            }),
+                            _vm._v(" "),
+                            _c("td", {
+                              domProps: {
+                                textContent: _vm._s(
+                                  individual.current_phone_number
+                                )
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("td")
+                          ])
+                        }),
+                        0
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
                   _c(
                     "ul",
                     _vm._l(_vm.files[0].individuals, function(individual) {
@@ -33362,19 +33486,6 @@ var render = function() {
               on: { click: _vm.isFileExists }
             },
             [_vm._v("Add File")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary mt-3",
-              on: {
-                click: function($event) {
-                  _vm.showModal = true
-                }
-              }
-            },
-            [_vm._v("Show Add File Modal")]
           )
         ])
       : _vm._e(),
@@ -33466,7 +33577,36 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Individual ID")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Passport #")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Native Name")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Relationship")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Age")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Gender")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Nationality")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Current Phone #")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Actions")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
