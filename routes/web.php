@@ -48,7 +48,8 @@ Route::middleware(['auth', 'is_active_user'])->group(function () {
 
     // Files
     Route::resource('files', File\FileController::class);
-    
+    Route::get('get-file', 'File\FileController@getFile');
+
     // Beneficiary
     Route::resource('beneficiaries', Beneficiary\BeneficiaryController::class);
     Route::get('beneficiaries/action', 'Beneficiary\BeneficiaryController@create')->name('beneficiaries.action');

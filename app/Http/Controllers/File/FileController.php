@@ -124,4 +124,15 @@ class FileController extends Controller
     {
         //
     }
+
+    public function getFile(Request $request)
+    {
+        
+
+
+        $file = File::where('number', 'like', $request->file_number)->get();
+        if($file){
+            return response()->json($file);
+        }        
+    }
 }
