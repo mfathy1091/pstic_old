@@ -38,7 +38,6 @@ class IndividualController extends Controller
             'individual_id' => 'required',
             'passport_number' => '',
             'name' => 'required',
-            'native_name' => 'required',
             'age' => 'required',
             'gender_id' => 'required',
             'nationality_id' => 'required',

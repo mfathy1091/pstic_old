@@ -17,7 +17,6 @@ class CreateIndividualsTable extends Migration
             $table->id();
             $table->string('passport_number')->nullable();
             $table->string('name');
-            $table->string('native_name');
             $table->integer('age');
             $table->boolean('is_registered')->nullable();
             $table->unsignedbigInteger('file_id')->nullable();

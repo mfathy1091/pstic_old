@@ -45,11 +45,6 @@
             <strong>Name:</strong>
             {{ $individual->name }}
         </div>
-        
-        <div class="form-group">
-            <strong>Native Name:</strong>
-            {{ $individual->native_name }}
-        </div>
 
         <div class="form-group">
             <strong>Age:</strong>

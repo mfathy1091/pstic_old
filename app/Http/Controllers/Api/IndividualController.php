@@ -55,7 +55,6 @@ class IndividualController extends Controller
         $individual = Individual::create([
             'passport_number' => $request->passport_number,
             'name' => $request->name,
-            'native_name' => $request->native_name,
             'age' => $request->age,
             'is_registered' => $request->is_registered,
             'file_id' => $request->file_id,
@@ -74,16 +73,3 @@ class IndividualController extends Controller
     
 }
 
-
-// file_number: '',
-// passport_number: '',
-// name: '',
-// native_name: '',
-// age: '',
-// is_registered: '',
-// file_id: '',
-// individual_id: '',
-// gender_id: '0',
-// nationality_id: '0',
-// pa_relationship_id: '0',
-// current_phone_number: '',

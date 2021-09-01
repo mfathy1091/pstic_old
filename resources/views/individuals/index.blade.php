@@ -48,7 +48,6 @@ All Individuals
                                 <th class="align-middle">Individual ID</th>
                                 <th class="align-middle">Individual Passport #</th>                     
                                 <th class="align-middle">Name</th>
-                                <th class="align-middle">Native Name</th>
                                 <th class="align-middle">Relationship</th>
                                 <th class="align-middle">Age</th>
                                 <th class="align-middle">Gender</th>
@@ -64,7 +63,6 @@ All Individuals
                                     <td>{{ $individual->individual_id }}
                                     <td>{{ $individual->passport_number }}
                                     <td>{{ $individual->name }}
-                                    <td>{{ $individual->native_name }}
                                     <td>{{ $individual->relationship->name }}
                                     <td>{{ $individual->age }}</td>
                                     <td>{{ $individual->gender->name }}</td>

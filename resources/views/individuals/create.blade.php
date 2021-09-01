@@ -79,14 +79,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="native_name" class="mr-sm-2">Native Name</label>
-                        <input id="native_name" type="text" name="native_name" class="form-control">
-                        @error('native_name')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
                         <label for="age" class="mr-sm-2">Age</label>
                         <input id="age" type="number" name="age" class="form-control">
                         @error('age')

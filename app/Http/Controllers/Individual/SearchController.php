@@ -30,7 +30,6 @@ class SearchController extends Controller
 //         })->orWhere('individual_id', 'like', "%$query%")
 //         ->orWhere('passport_number', 'like', "%$query%")
 //         ->orWhere('name', 'like', "%$query%")
-//         ->orWhere('native_name', 'like', "%$query%")
 //         ->get();
 //         //dd($individuals);
         
@@ -62,8 +61,7 @@ class SearchController extends Controller
     //         $individuals->orWhere('passport_number', 'like', "%$passport_number%");
     //     }
     //     if($request->filled('name')){
-    //         $individuals->orWhere('name', 'like', "%$name%")
-    //         ->orWhere('native_name', 'like', "%$name%");
+    //         $individuals->orWhere('name', 'like', "%$name%");
     //     }
 
     //     return view('home', ['individuals' => $individuals->get()]);
@@ -141,7 +139,6 @@ class SearchController extends Controller
                                 <td>'. $individual->individual_id. '</td>
                                 <td>'. $individual->passport_number. '</td>
                                 <td>'. $individual->name. '</td>
-                                <td>'. $individual->native_name. '</td>
                                 <td>'. $individual->relationship->name. '</td>
                                 <td>'. $individual->age. '</td>
                                 <td>'. $individual->gender->name. '</td>

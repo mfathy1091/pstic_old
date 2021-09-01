@@ -59,7 +59,6 @@
                                     <th class="align-middle">Individual ID</th>
                                     <th class="align-middle">Individual Passport #</th>                     
                                     <th class="align-middle">Name</th>
-                                    <th class="align-middle">Native Name</th>
                                     <th class="align-middle">Relationship</th>
                                     <th class="align-middle">Age</th>
                                     <th class="align-middle">Gender</th>

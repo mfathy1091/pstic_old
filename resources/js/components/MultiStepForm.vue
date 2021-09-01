@@ -26,10 +26,10 @@
       <section :class="animation">
         <div v-if="activeStep === 0">
           <h2>Add File Owner</h2>
-              <div class="form-group">
-					<label for="file_number" class="mr-sm-2">File Number</label>
-					<input v-model="data.file_number" type="text" name="file_number" class="form-control">
-              </div>
+			<div class="form-group">
+				<label for="file_number" class="mr-sm-2">File Number</label>
+				<input v-model="data.file_number" type="text" name="file_number" class="form-control">
+			</div>
 
 			<div class="form-group">
 				<label for="individual_id" class="mr-sm-2">Individual ID</label>
@@ -37,18 +37,13 @@
 			</div>
 
 			<div class="form-group">
-          <label for="passport_number" class="mr-sm-2">Passport Number</label>
-          <input v-model="data.passport_number" type="text" name="passport_number" class="form-control">
+				<label for="passport_number" class="mr-sm-2">Passport Number</label>
+				<input v-model="data.passport_number" type="text" name="passport_number" class="form-control">
 			</div>
 
 			<div class="form-group">
 				<label for="name" class="mr-sm-2">Name</label>
 				<input v-model="data.name" type="text" name="name" class="form-control">
-			</div>
-
-			<div class="form-group">
-				<label for="native_name" class="mr-sm-2">Native Name</label>
-				<input v-model="data.native_name" type="text" name="native_name" class="form-control">
 			</div>
 
 			<div class="form-group">
@@ -124,7 +119,6 @@
 						file_number: '',
 						passport_number: '',
 						name: '',
-						native_name: '',
 						age: '',
 						is_registered: '',
 						file_id: '1',

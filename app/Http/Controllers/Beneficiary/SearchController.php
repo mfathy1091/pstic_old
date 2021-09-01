@@ -30,7 +30,6 @@ class SearchController extends Controller
         })->orWhere('individual_id', 'like', "%$query%")
         ->orWhere('passport_number', 'like', "%$query%")
         ->orWhere('name', 'like', "%$query%")
-        ->orWhere('native_name', 'like', "%$query%")
         ->get();
         //dd($individuals);
         

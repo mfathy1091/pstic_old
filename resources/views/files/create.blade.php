@@ -87,13 +87,6 @@ Add New UNHCR Fileasd
                 
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="native_name" class="mr-sm-2">Native Name</label>
-                                            <input id="native_name" type="text" name="native_name" class="form-control">
-                                        </div>
-                                    </div>
-                
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
                                             <label for="age" class="mr-sm-2">age</label>
                                             <input id="age" type="text" name="age" class="form-control">
                                         </div>

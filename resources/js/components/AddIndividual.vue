@@ -8,13 +8,14 @@
                 <option value='2' >Passport</option>
             </select>
         </div>
-        <hr>
+        
         
         <div v-if="showFileNumberField" class="form-group">
+            <hr>
             <label>Enter the File Number</label>
             <input v-model="file_number" type="text" class="form-control col-md-4">
             
-            <!-- File Card -->
+            <!-- Card For File Content -->
             <div v-if="files.length > 0" class="card mt-3">
                 <div class="card-body">
                     <h5 class="card-title">{{files[0].number}}</h5>
@@ -32,7 +33,6 @@
                             <th class="align-middle">Individual ID</th>
                             <th class="align-middle">Passport #</th>                     
                             <th class="align-middle">Name</th>
-                            <th class="align-middle">Native Name</th>
                             <th class="align-middle">Relationship</th>
                             <th class="align-middle">Age</th>
                             <th class="align-middle">Gender</th>
@@ -46,7 +46,6 @@
                                 <td v-text="individual.individual_id">{{}}</td>
                                 <td v-text="individual.passport_number"></td>
                                 <td v-text="individual.name"></td>
-                                <td v-text="individual.native_name"></td>
                                 <td v-text="individual.name"></td>
                                 <td v-text="individual.age"></td>
                                 <!-- <td v-text="individual.name">{{ individual->gender->name }}</td>
@@ -61,10 +60,6 @@
                             </tr>
                     </tbody>
                 </table>
-                
-                    <ul>
-                        <li v-for="individual in files[0].individuals" :key="individual.id" v-text="individual.name"></li>
-                    </ul>
                     
                 </div>
             </div>
@@ -76,21 +71,77 @@
             
         </div>
 
-
+        <!-- Add Individual Modal -->
         <div v-if="showModal">
             <transition name="modal">
             <div class="modal-mask">
                 <div class="modal-wrapper">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-dialog-scrollable " role="document">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
+                        <h5 class="modal-title">Add Individual</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" @click="showModal = false">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Modal body text goes here.</p>
+
+                        <div class="form-group">
+                            <label>Relationship to PA:</label>
+                            <select class='form-control' v-model='data.pa_relationship_id'>
+                                <option value='0' disabled>Choose...</option>
+                                <option v-for='relationship in relationships' :value='relationship.id' :key="relationship.id">{{ relationship.name }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="individual_id" class="mr-sm-2">Individual ID</label>
+                            <input v-model="data.individual_id" type="text" name="individual_id" class="form-control">
+                        </div>
+
+                        <hr class="col-8 mt-5 mb-5">
+
+
+                        <div class="form-group">
+                            <label for="passport_number" class="mr-sm-2">Passport Number</label>
+                            <input v-model="data.passport_number" type="text" name="passport_number" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="mr-sm-2">Name</label>
+                            <input v-model="data.name" type="text" name="name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age" class="mr-sm-2">Age</label>
+                            <input v-model="data.age" type="number" name="age" class="form-control">
+                        </div>
+                
+
+                        <div class="form-group">
+                            <label>Select Gender:</label>
+                            <select class='form-control' v-model='data.gender_id'>
+                                <option value='0' disabled>Choose...</option>
+                                <option v-for='gender in genders' :value='gender.id' :key="gender.id">{{ gender.name }}</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Select Nationality:</label>
+                            <select class='form-control' v-model='data.nationality_id'>
+                                <option value='0' disabled>Choose...</option>
+                                <option v-for='nationality in nationalities' :value='nationality.id' :key="nationality.id">{{ nationality.name }}</option>
+                            </select>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="current_phone_number" class="mr-sm-2">Current Phone Number</label>
+                            <input id="current_phone_number" type="text" name="current_phone_number" class="form-control">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="showModal = false">Close</button>
@@ -115,6 +166,19 @@ export default {
             is_file_number_exists: false,
             files: [],
             showModal: false,
+            data : {
+                file_number: '',
+                passport_number: '',
+                name: '',
+                age: '',
+                is_registered: '',
+                file_id: '1',
+                individual_id: '',
+                gender_id: '0',
+                nationality_id: '0',
+                pa_relationship_id: '0',
+                current_phone_number: '',
+            },
         }
         
     },
@@ -127,9 +191,6 @@ export default {
             }
         },
         async isFileExists(){
-            // this.is_file_number_exists = !this.is_file_number_exists
-            // console.log(this.is_file_number_exists)
-
             try{
                 let response = await axios.get('/get-file', { params: { file_number: this.file_number } })
                 this.files = response.data
@@ -140,14 +201,52 @@ export default {
             console.log(this.files)
             console.log(this.files.length)
             console.log(this.files.length === 1)
+        },
+        async addIndividual(){
+            try {
+                const response = await axios.post('api/individuals/add-individual', this.data);
+                this.success = 'Added Scuccessfully'
+                // return await axios({
+                // 	method: 'post',
+                // 	url: 'api\individuals\add-individual',
+                // 	data: this.data,
+                // });
+            } catch(e){
+                this.derrors = 'Invalid'
+            }
+        }
+    },
+    
+    async created() {
+        // get genders
+        const res = await this.callApi('get', 'api/individuals/genders')
+        if(res.status==200)
+        {
+            this.genders = res.data
+        }else{
+            this.generic()
+        }
 
-            // if(this.files.length > 0){
-            //     this.is_file_number_exists = true
-            // }else{
-            //     this.is_file_number_exists = false
-            // }
+        // get nationalities
+        const res2 = await this.callApi('get', 'api/individuals/nationalities')
+        if(res2.status==200)
+        {
+            this.nationalities = res2.data
+        }else{
+            this.generic()
+        }
+
+        
+        // get relationships
+        const res3 = await this.callApi('get', 'api/individuals/relationships')
+        if(res3.status==200)
+        {
+            this.relationships = res3.data
+        }else{
+            this.generic()
         }
     }
+
 }
 </script>
 <style scoped>
