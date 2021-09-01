@@ -36,13 +36,11 @@
         {{-- <autocomplete-component></autocomplete-component> --}}
         
         <div class="card">
-            <div class="card-header">
-                Create Trip
-            </div>
 
             <div class="card-body">
                 {{-- <trip-form></trip-form> --}}
-                <multi_step-form></multi_step-form>
+                {{-- <multi_step-form></multi_step-form> --}}
+                <add-individual></add-individual>
             </div>
         </div>
 

@@ -17,6 +17,8 @@ Vue.component('trip-form', require('./components/TripForm.vue').default);
 Vue.component('multi_step-form', require('./components/MultiStepForm.vue').default);
 Vue.component('follow-ups', require('./components/FollowUps.vue').default);
 Vue.component('check-individual', require('./components/CheckIndividual.vue').default);
+Vue.component('add-individual', require('./components/AddIndividual.vue').default);
+
 
 
 const app = new Vue({
