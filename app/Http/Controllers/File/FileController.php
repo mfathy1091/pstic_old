@@ -130,7 +130,7 @@ class FileController extends Controller
         
 
 
-        $file = File::where('number', 'like', $request->file_number)->get();
+        $file = File::with('individuals')->where('number', 'like', $request->file_number)->get();
         if($file){
             return response()->json($file);
         }        
