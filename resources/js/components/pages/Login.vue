@@ -81,7 +81,8 @@
         font-size: 18px;
         transition: 0.4s;
     }
-    input:focus ~ label{
+    input:focus ~ label,
+    input:valid ~ label{
         transform: translateY(-38px);
         background: white;
         font-size: 16px;

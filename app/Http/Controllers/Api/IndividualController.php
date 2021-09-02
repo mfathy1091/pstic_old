@@ -8,7 +8,7 @@ use App\Models\Individual;
 use App\Models\Gender;
 use App\Models\Nationality;
 use App\Models\Relationship;
-
+use App\Models\File;
 
 class IndividualController extends Controller
 {
@@ -30,16 +30,13 @@ class IndividualController extends Controller
 
     public function getIndividuals(Request $request)
     {
-        $file_number = $request->keyword;
-
+        $file_number = $request->file_number;
         $individuals = Individual::query();
-
         $data = $individuals->with('file')->whereHas('file', function($q) use ($file_number){
-            return $q->where('number', '=', "%$file_number%");
+            return $q->where('number', 'like', "%$file_number%");
         })->get();
 
-
-        return response()->json($data); 
+        return response()->json($data);
     }
 
     public function getGenders()
@@ -67,12 +64,12 @@ class IndividualController extends Controller
     public function addIndividual(Request $request)
     {
         $individual = Individual::create([
+            'file_id' => $request->file_id,
+            'individual_id' => $request->individual_id,
             'passport_number' => $request->passport_number,
             'name' => $request->name,
             'age' => $request->age,
             'is_registered' => $request->is_registered,
-            'file_id' => $request->file_id,
-            'individual_id' => $request->individual_id,
             'gender_id' => $request->gender_id,
             'nationality_id' => $request->nationality_id,
             'relationship_id' => $request->pa_relationship_id,

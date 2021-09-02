@@ -30,27 +30,26 @@
                     style="text-align: center">
                     <thead>
                         <tr>   
-                            <th class="align-middle">Individual ID</th>
+                            <!-- <th class="align-middle">Individual ID</th> -->
+                            <th class="align-middle">Relationship</th>
                             <th class="align-middle">Passport #</th>                     
                             <th class="align-middle">Name</th>
-                            <th class="align-middle">Relationship</th>
                             <th class="align-middle">Age</th>
-                            <th class="align-middle">Gender</th>
-                            <th class="align-middle">Nationality</th>
+                            <!-- <th class="align-middle">Gender</th>
+                            <th class="align-middle">Nationality</th> -->
                             <th class="align-middle">Current Phone #</th>
                             <th class="align-middle">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <tr v-for="individual in files[0].individuals" :key="individual.id">
-                                <td v-text="individual.individual_id">{{}}</td>
-                                <td v-text="individual.passport_number"></td>
-                                <td v-text="individual.name"></td>
-                                <td v-text="individual.name"></td>
-                                <td v-text="individual.age"></td>
+                            <tr v-for="(individual, i) in individuals" :key="i" v-if="individuals.length">
                                 <!-- <td v-text="individual.name">{{ individual->gender->name }}</td>
                                 <td v-text="individual.name">{{ individual->nationality->name }}</td> -->
-                                <td v-text="individual.current_phone_number"></td>
+                                <td>{{individual.individual_id}}</td>
+                                <td>{{individual.passport_number}}</td>
+                                <td>{{individual.name}}</td>
+                                <td>{{individual.age}}</td>
+                                <td>{{individual.current_phone_number}}</td>
                                 <td>
                                     <!-- <a href="{{route('individuals.show', $individual->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true">Show</a>
 
@@ -95,7 +94,7 @@
                         </div>
 
                         <div class="form-group input-field">
-                            <input v-model="data.individual_id" type="text" name="individual_id" class="form-control">
+                            <input v-model="data.individual_id" type="text" name="individual_id" class="form-control" required>
                             <label for="individual_id" class="mr-sm-2">Individual ID</label>
                         </div>
 
@@ -140,12 +139,12 @@
 
                         <div class="form-group">
                             <label for="current_phone_number" class="mr-sm-2">Current Phone Number</label>
-                            <input id="current_phone_number" type="text" name="current_phone_number" class="form-control">
+                            <input v-model="data.current_phone_number" type="text" name="current_phone_number" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="showModal = false">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary" @click="addIndividual">Add</button>
                     </div>
                     </div>
                 </div>
@@ -183,6 +182,15 @@ export default {
         }
         
     },
+    watch: {
+        files(newValue, oldValue){
+            if(newValue.length > 0)
+            {
+                this.getIndividuals();
+            }
+            // files.length > 0
+        }
+    },
     methods:{
         toggleFileField() {
             if(this.register_type == 1){
@@ -199,26 +207,29 @@ export default {
             }catch(err){
                 console.log(err)
             }
-            console.log(this.files)
-            console.log(this.files.length)
-            console.log(this.files.length === 1)
         },
         async addIndividual(){
             try {
                 const response = await axios.post('api/individuals/add-individual', this.data);
                 this.success = 'Added Scuccessfully'
+                if(response.status == 200){
+                    // this.individuals.unshift(response.data)
+                    this.getIndividuals();
+                    this.showModal = false
+                }
             } catch(e){
                 this.derrors = 'Invalid'
             }
         },
         async getIndividuals(){
-            try{
-                let response = await axios.get('/api/individuals/get-individuals', { params: { file_number: this.file_number } })
-                this.individuals = response.data
-                // console.log(response.data)
-            }catch(err){
-                this.derrors = 'Invalid'
+            const res = await axios.get('/api/individuals/get-individuals', { params: { file_number: this.file_number } })
+            if(res.status==200)
+            {
+                this.individuals = res.data
             }
+
+
+
         }
     },
     
@@ -304,7 +315,8 @@ export default {
         font-size: 18px;
         transition: 0.4s;
     }
-    input:focus ~ label{
+    input:focus ~ label,
+    input:valid ~ label{
         transform: translateY(-38px);
         background: white;
         font-size: 16px;

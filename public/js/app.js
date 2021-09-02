@@ -2021,7 +2021,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2046,6 +2045,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         current_phone_number: ''
       }
     };
+  },
+  watch: {
+    files: function files(newValue, oldValue) {
+      if (newValue.length > 0) {
+        this.getIndividuals();
+      } // files.length > 0
+
+    }
   },
   methods: {
     toggleFileField: function toggleFileField() {
@@ -2085,11 +2092,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log(_context.t0);
 
               case 10:
-                console.log(_this.files);
-                console.log(_this.files.length);
-                console.log(_this.files.length === 1);
-
-              case 13:
               case "end":
                 return _context.stop();
             }
@@ -2113,57 +2115,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 3:
                 response = _context2.sent;
                 _this2.success = 'Added Scuccessfully';
-                _context2.next = 10;
+
+                if (response.status == 200) {
+                  // this.individuals.unshift(response.data)
+                  _this2.getIndividuals();
+
+                  _this2.showModal = false;
+                }
+
+                _context2.next = 11;
                 break;
 
-              case 7:
-                _context2.prev = 7;
+              case 8:
+                _context2.prev = 8;
                 _context2.t0 = _context2["catch"](0);
                 _this2.derrors = 'Invalid';
 
-              case 10:
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 7]]);
+        }, _callee2, null, [[0, 8]]);
       }))();
     },
     getIndividuals: function getIndividuals() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var response;
+        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.prev = 0;
-                _context3.next = 3;
+                _context3.next = 2;
                 return axios.get('/api/individuals/get-individuals', {
                   params: {
                     file_number: _this3.file_number
                   }
                 });
 
-              case 3:
-                response = _context3.sent;
-                _this3.individuals = response.data; // console.log(response.data)
+              case 2:
+                res = _context3.sent;
 
-                _context3.next = 10;
-                break;
+                if (res.status == 200) {
+                  _this3.individuals = res.data;
+                }
 
-              case 7:
-                _context3.prev = 7;
-                _context3.t0 = _context3["catch"](0);
-                _this3.derrors = 'Invalid';
-
-              case 10:
+              case 4:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 7]]);
+        }, _callee3);
       }))();
     }
   },
@@ -3274,7 +3278,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-mask[data-v-f3a23e82] {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, .5);\n  display: table;\n  transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-f3a23e82] {\n  display: table-cell;\n  vertical-align: top;\n}\n.input-field[data-v-f3a23e82]{\n        margin: 25px 0;\n        position: relative;\n        height: 50 px;\n        width: 100%;\n}\n.input-field input[data-v-f3a23e82]{\n        height: 100%;\n        width: 100%;\n        border: 1px solid silver;\n        padding-left: 15px;\n        padding-top: 10px;\n        padding-bottom: 10px;\n        outline: none;\n        font-size: 19px;\n        transition: .04s;\n}\ninput[data-v-f3a23e82]:focus{\n        border: 1px solid #1DA1F2;\n}\n.input-field label[data-v-f3a23e82]{\n        position: absolute;\n        top: 50%;\n        left: 15px;\n        transform: translateY(-50%);\n        pointer-events: none;\n        color: grey;\n        font-size: 18px;\n        transition: 0.4s;\n}\ninput:focus ~ label[data-v-f3a23e82]{\n        transform: translateY(-38px);\n        background: white;\n        font-size: 16px;\n        color: #1DA1F2;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-mask[data-v-f3a23e82] {\r\n  position: fixed;\r\n  z-index: 9998;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: rgba(0, 0, 0, .5);\r\n  display: table;\r\n  transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-f3a23e82] {\r\n  display: table-cell;\r\n  vertical-align: top;\n}\n.input-field[data-v-f3a23e82]{\r\n        margin: 25px 0;\r\n        position: relative;\r\n        height: 50 px;\r\n        width: 100%;\n}\n.input-field input[data-v-f3a23e82]{\r\n        height: 100%;\r\n        width: 100%;\r\n        border: 1px solid silver;\r\n        padding-left: 15px;\r\n        padding-top: 10px;\r\n        padding-bottom: 10px;\r\n        outline: none;\r\n        font-size: 19px;\r\n        transition: .04s;\n}\ninput[data-v-f3a23e82]:focus{\r\n        border: 1px solid #1DA1F2;\n}\n.input-field label[data-v-f3a23e82]{\r\n        position: absolute;\r\n        top: 50%;\r\n        left: 15px;\r\n        transform: translateY(-50%);\r\n        pointer-events: none;\r\n        color: grey;\r\n        font-size: 18px;\r\n        transition: 0.4s;\n}\ninput:focus ~ label[data-v-f3a23e82],\r\n    input:valid ~ label[data-v-f3a23e82]{\r\n        transform: translateY(-38px);\r\n        background: white;\r\n        font-size: 16px;\r\n        color: #1DA1F2;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3298,7 +3302,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n*[data-v-4fe3757a]{\n    margin: 0;\n    padding: 0;\n    border-radius: 5px;\n    box-sizing: border-box;\n}\nbody[data-v-4fe3757a]{\n    height: 100vh;\n    display: flex;\n    align-items: center;\n    text-align: center;\n    justify-content: center;\n    background-color: azure;\n}\n.container[data-v-4fe3757a]{\n    position: relative;\n    width: 400px;\n    background: white;\n    padding: 60px 40px;\n}\nheader[data-v-4fe3757a]{\n    font-size: 40px;\n    margin-bottom: 60px;\n}\n.input-field[data-v-4fe3757a]{\n    margin: 25px 0;\n    position: relative;\n    height: 50 px;\n    width: 100%;\n}\n.input-field input[data-v-4fe3757a]{\n    height: 100%;\n    width: 100%;\n    border: 1px solid silver;\n    padding-left: 15px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    outline: none;\n    font-size: 19px;\n    transition: .04s;\n}\ninput[data-v-4fe3757a]:focus{\n    border: 1px solid #1DA1F2;\n}\n.input-field label[data-v-4fe3757a]{\n    position: absolute;\n    top: 50%;\n    left: 15px;\n    transform: translateY(-50%);\n    pointer-events: none;\n    color: grey;\n    font-size: 18px;\n    transition: 0.4s;\n}\ninput:focus ~ label[data-v-4fe3757a]{\n    transform: translateY(-38px);\n    background: white;\n    font-size: 16px;\n    color: #1DA1F2;\n}\ninput[data-v-4fe3757a]:autofill {\n    top: 50px\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n*[data-v-4fe3757a]{\n    margin: 0;\n    padding: 0;\n    border-radius: 5px;\n    box-sizing: border-box;\n}\nbody[data-v-4fe3757a]{\n    height: 100vh;\n    display: flex;\n    align-items: center;\n    text-align: center;\n    justify-content: center;\n    background-color: azure;\n}\n.container[data-v-4fe3757a]{\n    position: relative;\n    width: 400px;\n    background: white;\n    padding: 60px 40px;\n}\nheader[data-v-4fe3757a]{\n    font-size: 40px;\n    margin-bottom: 60px;\n}\n.input-field[data-v-4fe3757a]{\n    margin: 25px 0;\n    position: relative;\n    height: 50 px;\n    width: 100%;\n}\n.input-field input[data-v-4fe3757a]{\n    height: 100%;\n    width: 100%;\n    border: 1px solid silver;\n    padding-left: 15px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    outline: none;\n    font-size: 19px;\n    transition: .04s;\n}\ninput[data-v-4fe3757a]:focus{\n    border: 1px solid #1DA1F2;\n}\n.input-field label[data-v-4fe3757a]{\n    position: absolute;\n    top: 50%;\n    left: 15px;\n    transform: translateY(-50%);\n    pointer-events: none;\n    color: grey;\n    font-size: 18px;\n    transition: 0.4s;\n}\ninput:focus ~ label[data-v-4fe3757a],\ninput:valid ~ label[data-v-4fe3757a]{\n    transform: translateY(-38px);\n    background: white;\n    font-size: 16px;\n    color: #1DA1F2;\n}\ninput[data-v-4fe3757a]:autofill {\n    top: 50px\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33710,46 +33714,30 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "tbody",
-                        _vm._l(_vm.files[0].individuals, function(individual) {
-                          return _c("tr", { key: individual.id }, [
-                            _c(
-                              "td",
-                              {
-                                domProps: {
-                                  textContent: _vm._s(individual.individual_id)
-                                }
-                              },
-                              [_vm._v("{{}}")]
-                            ),
-                            _vm._v(" "),
-                            _c("td", {
-                              domProps: {
-                                textContent: _vm._s(individual.passport_number)
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("td", {
-                              domProps: { textContent: _vm._s(individual.name) }
-                            }),
-                            _vm._v(" "),
-                            _c("td", {
-                              domProps: { textContent: _vm._s(individual.name) }
-                            }),
-                            _vm._v(" "),
-                            _c("td", {
-                              domProps: { textContent: _vm._s(individual.age) }
-                            }),
-                            _vm._v(" "),
-                            _c("td", {
-                              domProps: {
-                                textContent: _vm._s(
-                                  individual.current_phone_number
-                                )
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("td")
-                          ])
+                        _vm._l(_vm.individuals, function(individual, i) {
+                          return _vm.individuals.length
+                            ? _c("tr", { key: i }, [
+                                _c("td", [
+                                  _vm._v(_vm._s(individual.individual_id))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(individual.passport_number))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(individual.name))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(individual.age))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(individual.current_phone_number)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td")
+                              ])
+                            : _vm._e()
                         }),
                         0
                       )
@@ -33895,7 +33883,11 @@ var render = function() {
                                 }
                               ],
                               staticClass: "form-control",
-                              attrs: { type: "text", name: "individual_id" },
+                              attrs: {
+                                type: "text",
+                                name: "individual_id",
+                                required: ""
+                              },
                               domProps: { value: _vm.data.individual_id },
                               on: {
                                 input: function($event) {
@@ -34156,11 +34148,33 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.data.current_phone_number,
+                                  expression: "data.current_phone_number"
+                                }
+                              ],
                               staticClass: "form-control",
                               attrs: {
-                                id: "current_phone_number",
                                 type: "text",
                                 name: "current_phone_number"
+                              },
+                              domProps: {
+                                value: _vm.data.current_phone_number
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.data,
+                                    "current_phone_number",
+                                    $event.target.value
+                                  )
+                                }
                               }
                             })
                           ])
@@ -34185,9 +34199,10 @@ var render = function() {
                             "button",
                             {
                               staticClass: "btn btn-primary",
-                              attrs: { type: "button" }
+                              attrs: { type: "button" },
+                              on: { click: _vm.addIndividual }
                             },
-                            [_vm._v("Save changes")]
+                            [_vm._v("Add")]
                           )
                         ])
                       ])
@@ -34209,19 +34224,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { staticClass: "align-middle" }, [_vm._v("Individual ID")]),
+        _c("th", { staticClass: "align-middle" }, [_vm._v("Relationship")]),
         _vm._v(" "),
         _c("th", { staticClass: "align-middle" }, [_vm._v("Passport #")]),
         _vm._v(" "),
         _c("th", { staticClass: "align-middle" }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { staticClass: "align-middle" }, [_vm._v("Relationship")]),
-        _vm._v(" "),
         _c("th", { staticClass: "align-middle" }, [_vm._v("Age")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "align-middle" }, [_vm._v("Gender")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "align-middle" }, [_vm._v("Nationality")]),
         _vm._v(" "),
         _c("th", { staticClass: "align-middle" }, [_vm._v("Current Phone #")]),
         _vm._v(" "),
