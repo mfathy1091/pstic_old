@@ -12,7 +12,7 @@ use App\Models\Relationship;
 
 class IndividualController extends Controller
 {
-    public function getIndividuals(Request $request)
+    public function liveSearch(Request $request)
     {
         $data = Individual::where('name', 'LIKE','%'.$request->keyword.'%')->get();
 
@@ -22,6 +22,20 @@ class IndividualController extends Controller
 
         $data = $individuals->with('file')->whereHas('file', function($q) use ($file_number){
             return $q->where('number', 'like', "%$file_number%");
+        })->get();
+
+
+        return response()->json($data); 
+    }
+
+    public function getIndividuals(Request $request)
+    {
+        $file_number = $request->keyword;
+
+        $individuals = Individual::query();
+
+        $data = $individuals->with('file')->whereHas('file', function($q) use ($file_number){
+            return $q->where('number', '=', "%$file_number%");
         })->get();
 
 

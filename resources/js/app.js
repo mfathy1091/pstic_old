@@ -18,6 +18,7 @@ Vue.component('multi_step-form', require('./components/MultiStepForm.vue').defau
 Vue.component('follow-ups', require('./components/FollowUps.vue').default);
 Vue.component('check-individual', require('./components/CheckIndividual.vue').default);
 Vue.component('add-individual', require('./components/AddIndividual.vue').default);
+Vue.component('login-form', require('./components/pages/Login.vue').default);
 
 
 

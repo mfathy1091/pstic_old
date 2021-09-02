@@ -94,9 +94,9 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="individual_id" class="mr-sm-2">Individual ID</label>
+                        <div class="form-group input-field">
                             <input v-model="data.individual_id" type="text" name="individual_id" class="form-control">
+                            <label for="individual_id" class="mr-sm-2">Individual ID</label>
                         </div>
 
                         <hr class="col-8 mt-5 mb-5">
@@ -166,6 +166,7 @@ export default {
             is_file_number_exists: false,
             files: [],
             showModal: false,
+            individuals: [],
             data : {
                 file_number: '',
                 passport_number: '',
@@ -206,12 +207,16 @@ export default {
             try {
                 const response = await axios.post('api/individuals/add-individual', this.data);
                 this.success = 'Added Scuccessfully'
-                // return await axios({
-                // 	method: 'post',
-                // 	url: 'api\individuals\add-individual',
-                // 	data: this.data,
-                // });
             } catch(e){
+                this.derrors = 'Invalid'
+            }
+        },
+        async getIndividuals(){
+            try{
+                let response = await axios.get('/api/individuals/get-individuals', { params: { file_number: this.file_number } })
+                this.individuals = response.data
+                // console.log(response.data)
+            }catch(err){
                 this.derrors = 'Invalid'
             }
         }
@@ -266,4 +271,43 @@ export default {
   display: table-cell;
   vertical-align: top;
 }
+
+
+
+    .input-field{
+        margin: 25px 0;
+        position: relative;
+        height: 50 px;
+        width: 100%;
+    }
+    .input-field input{
+        height: 100%;
+        width: 100%;
+        border: 1px solid silver;
+        padding-left: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        outline: none;
+        font-size: 19px;
+        transition: .04s;
+    }
+    input:focus{
+        border: 1px solid #1DA1F2;
+    }
+    .input-field label{
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: grey;
+        font-size: 18px;
+        transition: 0.4s;
+    }
+    input:focus ~ label{
+        transform: translateY(-38px);
+        background: white;
+        font-size: 16px;
+        color: #1DA1F2;
+    }
 </style>

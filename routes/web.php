@@ -33,7 +33,9 @@ Route::middleware(['auth', 'is_active_user'])->group(function () {
     });
 
     // Individuals
-    Route::get('vuelivesearch', 'Api\IndividualController@getIndividuals')->name('vuelivesearch');
+    Route::get('live-search', 'Api\IndividualController@liveSearch')->name('live_search');
+    Route::get('api/individuals/get-individuals', 'Api\IndividualController@getIndividuals');
+
     Route::post('api/individuals/add-individual', 'Api\IndividualController@addIndividual');
     Route::get('api/individuals/genders', 'Api\IndividualController@getGenders');
     Route::get('api/individuals/nationalities', 'Api\IndividualController@getNationalities');

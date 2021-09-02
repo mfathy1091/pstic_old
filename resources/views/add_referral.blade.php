@@ -41,6 +41,7 @@
                 {{-- <trip-form></trip-form> --}}
                 {{-- <multi_step-form></multi_step-form> --}}
                 <add-individual></add-individual>
+                <login-form></login-form>
             </div>
         </div>
 
