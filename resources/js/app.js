@@ -3,11 +3,11 @@ require('./bootstrap');
 import Vue from 'vue'
 // import router from './router'
 
+
 import common from './common'
 Vue.mixin(common)
 
 import VeeValidate from 'vee-validate';
-
 Vue.use(VeeValidate);
 
 // Vue.component('mainapp', require('./components/mainapp.vue').default);

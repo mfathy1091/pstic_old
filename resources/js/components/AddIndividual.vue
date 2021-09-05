@@ -1,5 +1,14 @@
 <template>
     <div>
+
+		<div v-if="successMessage" class="alert alert-success position-relative" role="alert">
+			{{ successMessage }}
+		</div>
+
+	  <div v-if="errorMessage" class="alert alert-danger position-relative" role="alret">
+		  {{ errorMessage }}
+	  </div>
+
         <div class="form-group">
             <label>Register Using:</label>
             <select class='form-control col-md-6' v-model='register_type' @change="toggleFileField">
@@ -13,7 +22,8 @@
         <div v-if="showFileNumberField" class="form-group">
             <hr>
             <label>Enter the File Number</label>
-            <input v-model="file_number" type="text" class="form-control col-md-4">
+            <input v-validate="{ required: true, regex: /\d\d\d-\d\dC\d\d\d\d\d/ }" name="myinput" v-model="file_number" type="text" class="form-control col-md-4">
+            <span class="text-danger">{{ errors.first('myinput') }}</span>
             
             <!-- Card For File Content -->
             <div v-if="files.length > 0" class="card mt-3">
@@ -22,7 +32,7 @@
                     <hr>
                     <div class="d-flex">
                         <h5>Individuals</h5>
-                        <button class="btn btn-primary btn-sm mb-1 ml-3" @click="showModal = true">Add Individual</button>
+                        <button class="btn btn-primary btn-sm mb-1 ml-3" @click="showAddIndividualModal = true">Add Individual</button>
                     </div>
 
                     <table id="datatable1" class="table table-hover table-sm table-bordered p-0"
@@ -53,8 +63,8 @@
                                 <td>
                                     <!-- <a href="{{route('individuals.show', $individual->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true">Show</a>
 
-                                    <a href="{{route('individuals.edit', $individual->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_individual{{ $individual->id }}" title="Delete"><i class="fa fa-trash"></i></button> -->
+                                    <a href="{{route('individuals.edit', $individual->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a> -->
+                                    <button class="btn btn-primary btn-danger btn-sm mb-1 ml-3" @click="showAddIndividualModal = true">Delete</button>
                                 </td>
                             </tr>
                     </tbody>
@@ -64,14 +74,15 @@
             </div>
             <p v-if="files.length > 0" class="text-primary">This File already exists</p>
 
-            <button class="btn btn-primary mt-3" @click="isFileExists">Add File</button>
+            
             
 
             
         </div>
+        <button class="btn btn-primary mt-3" @click="isFileExists">Add File</button>
 
         <!-- Add Individual Modal -->
-        <div v-if="showModal">
+        <div v-if="showAddIndividualModal">
             <transition name="modal">
             <div class="modal-mask">
                 <div class="modal-wrapper">
@@ -80,14 +91,14 @@
                     <div class="modal-header">
                         <h5 class="modal-title">Add Individual</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" @click="showModal = false">&times;</span>
+                        <span aria-hidden="true" @click="showAddIndividualModal = false">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
                             <label>Relationship to PA:</label>
-                            <select class='form-control' v-model='data.pa_relationship_id'>
+                            <select class='form-control' v-model='data.relationship_id'>
                                 <option value='0' disabled>Choose...</option>
                                 <option v-for='relationship in relationships' :value='relationship.id' :key="relationship.id">{{ relationship.name }}</option>
                             </select>
@@ -96,6 +107,8 @@
                         <div class="form-group input-field">
                             <input v-model="data.individual_id" type="text" name="individual_id" class="form-control" required>
                             <label for="individual_id" class="mr-sm-2">Individual ID</label>
+                            <div v-if="addIndividualErrors.individual_id" class="alert alert-danger" role="alret">{{ addIndividualErrors.individual_id }}</div>
+
                         </div>
 
                         <hr class="col-8 mt-5 mb-5">
@@ -104,6 +117,7 @@
                         <div class="form-group">
                             <label for="passport_number" class="mr-sm-2">Passport Number</label>
                             <input v-model="data.passport_number" type="text" name="passport_number" class="form-control">
+                            
                         </div>
 
                         <div class="form-group">
@@ -143,8 +157,36 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" @click="showModal = false">Close</button>
+                        <button type="button" class="btn btn-secondary" @click="showAddIndividualModal = false">Close</button>
                         <button type="button" class="btn btn-primary" @click="addIndividual">Add</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </transition>
+        </div>
+
+        <!-- Delete Individual Modal -->
+        <div v-if="showDeleteIndividualModal">
+            <transition name="modal">
+            <div class="modal-mask">
+                <div class="modal-wrapper">
+                <div class="modal-dialog modal-dialog-scrollable " role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Individual</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" @click="showAddIndividualModal = false">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure?</p>
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @click="showAddIndividualModal = false">Close</button>
+                        <button type="button" class="btn btn-danger" @click="addIndividual">Yes, Delete</button>
                     </div>
                     </div>
                 </div>
@@ -159,26 +201,42 @@
 export default {
     data () {
         return{
+            value: '',
             register_type: '1',
             showFileNumberField: true,
             file_number:'',
             is_file_number_exists: false,
             files: [],
-            showModal: false,
+            showAddIndividualModal: false,
+            showDeleteIndividualModal: false,
             individuals: [],
             data : {
                 file_number: '',
                 passport_number: '',
                 name: '',
                 age: '',
-                is_registered: '',
+                is_registered: '1',
                 file_id: '1',
                 individual_id: '',
                 gender_id: '0',
                 nationality_id: '0',
-                pa_relationship_id: '0',
+                relationship_id: '0',
                 current_phone_number: '',
             },
+            addIndividualErrors: {
+                passport_number: '',
+                name: '',
+                age: '',
+                is_registered: '',
+                file_id: '',
+                individual_id: '',
+                gender_id: '',
+                nationality_id: '',
+                pa_relationship_id: '',
+                current_phone_number: '',
+            },
+            successMessage: '',
+            errorMessage: '',
         }
         
     },
@@ -201,24 +259,34 @@ export default {
         },
         async isFileExists(){
             try{
-                let response = await axios.get('/get-file', { params: { file_number: this.file_number } })
-                this.files = response.data
-                // console.log(response.data)
+                let res = await axios.get('/get-file', { params: { file_number: this.file_number } })
+                this.files = res.data
+                // console.log(res.data)
             }catch(err){
                 console.log(err)
             }
         },
         async addIndividual(){
+            let res = '';
             try {
-                const response = await axios.post('api/individuals/add-individual', this.data);
+                res = await axios.post('api/individuals/add-individual', this.data);
                 this.success = 'Added Scuccessfully'
-                if(response.status == 200){
-                    // this.individuals.unshift(response.data)
+                if(res.status == 200){
+                    // this.individuals.unshift(res.data)
                     this.getIndividuals();
-                    this.showModal = false
+                    this.showAddIndividualModal = false
+                    this.successMessage = "Added Successfully"
                 }
             } catch(e){
-                this.derrors = 'Invalid'
+                res = e.response
+            }
+            
+            if(res.status==422){
+                console.log('outside error')
+                if(res.data.errors.individual_id){
+                    this.addIndividualErrors.individual_id = res.data.errors.individual_id[0]
+                    console.log('inner error')
+                }
             }
         },
         async getIndividuals(){

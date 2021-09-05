@@ -2021,29 +2021,87 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      value: '',
       register_type: '1',
       showFileNumberField: true,
       file_number: '',
       is_file_number_exists: false,
       files: [],
-      showModal: false,
+      showAddIndividualModal: false,
+      showDeleteIndividualModal: false,
       individuals: [],
       data: {
         file_number: '',
         passport_number: '',
         name: '',
         age: '',
-        is_registered: '',
+        is_registered: '1',
         file_id: '1',
         individual_id: '',
         gender_id: '0',
         nationality_id: '0',
-        pa_relationship_id: '0',
+        relationship_id: '0',
         current_phone_number: ''
-      }
+      },
+      addIndividualErrors: {
+        passport_number: '',
+        name: '',
+        age: '',
+        is_registered: '',
+        file_id: '',
+        individual_id: '',
+        gender_id: '',
+        nationality_id: '',
+        pa_relationship_id: '',
+        current_phone_number: ''
+      },
+      successMessage: '',
+      errorMessage: ''
     };
   },
   watch: {
@@ -2066,7 +2124,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response;
+        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2080,8 +2138,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 3:
-                response = _context.sent;
-                _this.files = response.data; // console.log(response.data)
+                res = _context.sent;
+                _this.files = res.data; // console.log(res.data)
 
                 _context.next = 10;
                 break;
@@ -2103,40 +2161,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var response;
+        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
+                res = '';
+                _context2.prev = 1;
+                _context2.next = 4;
                 return axios.post('api/individuals/add-individual', _this2.data);
 
-              case 3:
-                response = _context2.sent;
+              case 4:
+                res = _context2.sent;
                 _this2.success = 'Added Scuccessfully';
 
-                if (response.status == 200) {
-                  // this.individuals.unshift(response.data)
+                if (res.status == 200) {
+                  // this.individuals.unshift(res.data)
                   _this2.getIndividuals();
 
-                  _this2.showModal = false;
+                  _this2.showAddIndividualModal = false;
+                  _this2.successMessage = "Added Successfully";
                 }
 
-                _context2.next = 11;
+                _context2.next = 12;
                 break;
 
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](0);
-                _this2.derrors = 'Invalid';
+              case 9:
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](1);
+                res = _context2.t0.response;
 
-              case 11:
+              case 12:
+                if (res.status == 422) {
+                  console.log('outside error');
+
+                  if (res.data.errors.individual_id) {
+                    _this2.addIndividualErrors.individual_id = res.data.errors.individual_id[0];
+                    console.log('inner error');
+                  }
+                }
+
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 8]]);
+        }, _callee2, null, [[1, 9]]);
       }))();
     },
     getIndividuals: function getIndividuals() {
@@ -2673,8 +2743,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       genders: [],
       nationalities: [],
       relationships: [],
-      derrors: '',
-      success: '',
+      errorMessage: '',
+      successMessage: '',
       activeStep: 0,
       animation: 'animate-in',
       formSteps: [{
@@ -2783,7 +2853,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 response = _context.sent;
-                _this3.success = 'Added Scuccessfully'; // return await axios({
+                _this3.successMessage = 'Added Scuccessfully'; // return await axios({
                 // 	method: 'post',
                 // 	url: 'api\individuals\add-individual',
                 // 	data: this.data,
@@ -2795,7 +2865,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 7:
                 _context.prev = 7;
                 _context.t0 = _context["catch"](0);
-                _this3.derrors = 'Invalid';
+                _this3.errorMessage = 'Invalid';
 
               case 10:
               case "end":
@@ -33601,6 +33671,28 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm.successMessage
+      ? _c(
+          "div",
+          {
+            staticClass: "alert alert-success position-relative",
+            attrs: { role: "alert" }
+          },
+          [_vm._v("\n\t\t\t" + _vm._s(_vm.successMessage) + "\n\t\t")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.errorMessage
+      ? _c(
+          "div",
+          {
+            staticClass: "alert alert-danger position-relative",
+            attrs: { role: "alret" }
+          },
+          [_vm._v("\n\t\t  " + _vm._s(_vm.errorMessage) + "\n\t  ")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
       _c("label", [_vm._v("Register Using:")]),
       _vm._v(" "),
@@ -33656,6 +33748,13 @@ var render = function() {
           _c("input", {
             directives: [
               {
+                name: "validate",
+                rawName: "v-validate",
+                value: { required: true, regex: /\d\d\d-\d\dC\d\d\d\d\d/ },
+                expression:
+                  "{ required: true, regex: /\\d\\d\\d-\\d\\dC\\d\\d\\d\\d\\d/ }"
+              },
+              {
                 name: "model",
                 rawName: "v-model",
                 value: _vm.file_number,
@@ -33663,7 +33762,7 @@ var render = function() {
               }
             ],
             staticClass: "form-control col-md-4",
-            attrs: { type: "text" },
+            attrs: { name: "myinput", type: "text" },
             domProps: { value: _vm.file_number },
             on: {
               input: function($event) {
@@ -33674,6 +33773,10 @@ var render = function() {
               }
             }
           }),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-danger" }, [
+            _vm._v(_vm._s(_vm.errors.first("myinput")))
+          ]),
           _vm._v(" "),
           _vm.files.length > 0
             ? _c("div", { staticClass: "card mt-3" }, [
@@ -33693,7 +33796,7 @@ var render = function() {
                         staticClass: "btn btn-primary btn-sm mb-1 ml-3",
                         on: {
                           click: function($event) {
-                            _vm.showModal = true
+                            _vm.showAddIndividualModal = true
                           }
                         }
                       },
@@ -33735,7 +33838,21 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("td")
+                                _c("td", [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-primary btn-danger btn-sm mb-1 ml-3",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.showAddIndividualModal = true
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Delete")]
+                                  )
+                                ])
                               ])
                             : _vm._e()
                         }),
@@ -33751,20 +33868,17 @@ var render = function() {
             ? _c("p", { staticClass: "text-primary" }, [
                 _vm._v("This File already exists")
               ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary mt-3",
-              on: { click: _vm.isFileExists }
-            },
-            [_vm._v("Add File")]
-          )
+            : _vm._e()
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm.showModal
+    _c(
+      "button",
+      { staticClass: "btn btn-primary mt-3", on: { click: _vm.isFileExists } },
+      [_vm._v("Add File")]
+    ),
+    _vm._v(" "),
+    _vm.showAddIndividualModal
       ? _c(
           "div",
           [
@@ -33801,7 +33915,7 @@ var render = function() {
                                   attrs: { "aria-hidden": "true" },
                                   on: {
                                     click: function($event) {
-                                      _vm.showModal = false
+                                      _vm.showAddIndividualModal = false
                                     }
                                   }
                                 },
@@ -33822,8 +33936,8 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.data.pa_relationship_id,
-                                    expression: "data.pa_relationship_id"
+                                    value: _vm.data.relationship_id,
+                                    expression: "data.relationship_id"
                                   }
                                 ],
                                 staticClass: "form-control",
@@ -33840,7 +33954,7 @@ var render = function() {
                                       })
                                     _vm.$set(
                                       _vm.data,
-                                      "pa_relationship_id",
+                                      "relationship_id",
                                       $event.target.multiple
                                         ? $$selectedVal
                                         : $$selectedVal[0]
@@ -33910,7 +34024,24 @@ var render = function() {
                                 attrs: { for: "individual_id" }
                               },
                               [_vm._v("Individual ID")]
-                            )
+                            ),
+                            _vm._v(" "),
+                            _vm.addIndividualErrors.individual_id
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "alert alert-danger",
+                                    attrs: { role: "alret" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.addIndividualErrors.individual_id
+                                      )
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("hr", { staticClass: "col-8 mt-5 mb-5" }),
@@ -34188,7 +34319,7 @@ var render = function() {
                               attrs: { type: "button" },
                               on: {
                                 click: function($event) {
-                                  _vm.showModal = false
+                                  _vm.showAddIndividualModal = false
                                 }
                               }
                             },
@@ -34203,6 +34334,93 @@ var render = function() {
                               on: { click: _vm.addIndividual }
                             },
                             [_vm._v("Add")]
+                          )
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showDeleteIndividualModal
+      ? _c(
+          "div",
+          [
+            _c("transition", { attrs: { name: "modal" } }, [
+              _c("div", { staticClass: "modal-mask" }, [
+                _c("div", { staticClass: "modal-wrapper" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-dialog modal-dialog-scrollable ",
+                      attrs: { role: "document" }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _c("div", { staticClass: "modal-header" }, [
+                          _c("h5", { staticClass: "modal-title" }, [
+                            _vm._v("Add Individual")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "close",
+                              attrs: {
+                                type: "button",
+                                "data-dismiss": "modal",
+                                "aria-label": "Close"
+                              }
+                            },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  attrs: { "aria-hidden": "true" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.showAddIndividualModal = false
+                                    }
+                                  }
+                                },
+                                [_vm._v("×")]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c("p", [_vm._v("Are you sure?")])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-footer" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.showAddIndividualModal = false
+                                }
+                              }
+                            },
+                            [_vm._v("Close")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button" },
+                              on: { click: _vm.addIndividual }
+                            },
+                            [_vm._v("Yes, Delete")]
                           )
                         ])
                       ])
@@ -34545,19 +34763,19 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div"),
     _vm._v(" "),
-    _vm.success
+    _vm.successMessage
       ? _c(
           "div",
           { staticClass: "alert alert-success", attrs: { role: "alert" } },
-          [_vm._v("\n\t\t\t" + _vm._s(_vm.success) + "\n\t\t")]
+          [_vm._v("\n\t\t\t" + _vm._s(_vm.successMessage) + "\n\t\t")]
         )
       : _vm._e(),
     _vm._v(" "),
-    _vm.derrors
+    _vm.errorMessage
       ? _c(
           "div",
           { staticClass: "alert alert-danger", attrs: { role: "alret" } },
-          [_vm._v("\n\t\t  " + _vm._s(_vm.derrors) + "\n\t  ")]
+          [_vm._v("\n\t\t  " + _vm._s(_vm.errorMessage) + "\n\t  ")]
         )
       : _vm._e(),
     _vm._v(" "),

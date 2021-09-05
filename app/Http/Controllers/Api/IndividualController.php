@@ -9,6 +9,7 @@ use App\Models\Gender;
 use App\Models\Nationality;
 use App\Models\Relationship;
 use App\Models\File;
+use App\Http\Requests\IndividualStoreRequest;
 
 class IndividualController extends Controller
 {
@@ -61,7 +62,7 @@ class IndividualController extends Controller
     }
 
 
-    public function addIndividual(Request $request)
+    public function addIndividual(IndividualStoreRequest $request)
     {
         $individual = Individual::create([
             'file_id' => $request->file_id,
@@ -72,7 +73,7 @@ class IndividualController extends Controller
             'is_registered' => $request->is_registered,
             'gender_id' => $request->gender_id,
             'nationality_id' => $request->nationality_id,
-            'relationship_id' => $request->pa_relationship_id,
+            'relationship_id' => $request->relationship_id,
             'current_phone_number' => $request->current_phone_number,
         ]);
 

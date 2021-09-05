@@ -4,12 +4,12 @@
 	<div>
 		
 	</div>
-		<div v-if="success" class="alert alert-success" role="alert">
-			{{ success }}
+		<div v-if="successMessage" class="alert alert-success" role="alert">
+			{{ successMessage }}
 		</div>
 
-	  <div v-if="derrors" class="alert alert-danger" role="alret">
-		  {{ derrors }}
+	  <div v-if="errorMessage" class="alert alert-danger" role="alret">
+		  {{ errorMessage }}
 	  </div>
 
     <article>
@@ -131,8 +131,8 @@
 					genders: [],
 					nationalities: [],
 					relationships: [],
-					derrors: '',
-					success: '',
+					errorMessage: '',
+					successMessage: '',
 				activeStep: 0,
 				animation: 'animate-in',
 				formSteps: [
@@ -200,21 +200,21 @@
 				
 				try {
 					const response = await axios.post('api/individuals/add-individual', this.data);
-					this.success = 'Added Scuccessfully'
+					this.successMessage = 'Added Scuccessfully'
 					// return await axios({
 					// 	method: 'post',
 					// 	url: 'api\individuals\add-individual',
 					// 	data: this.data,
 					// });
 				} catch(e){
-					this.derrors = 'Invalid'
+					this.errorMessage = 'Invalid'
 				}
 
 				// const res = await this.callApi('post', 'api\individuals\add-individual', this.data).
-  				// catch(e => {this.derrors = e.data.errors})
+  				// catch(e => {this.errorMessage = e.data.errors})
 				// if(res.status==201){
 				// 	// this.tags.unshift(res.data)
-				// 	// this.success('Tag has been added successfuly!')
+				// 	// this.successMessage('Tag has been added successfuly!')
 				// 	// this.addModal = false
 				// 	this.data.name = ""
 				// }else{
